@@ -1,0 +1,6 @@
+<div>
+  <input [(ngModel)] = "email" />
+  <input [(ngModel)] = "password" />
+  <button (click)="login()">Ingresar</button>
+  {{ token != "" ? "Login válido" : "Login invalido" }}
+</div>
