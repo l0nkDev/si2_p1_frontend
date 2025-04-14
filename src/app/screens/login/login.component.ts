@@ -24,7 +24,7 @@ export class LoginComponent {
     var password = this.password;
     this.token = "";
     this.http.post<Response>(
-      "https://dismac-backend.up.railway.app/auth/login/email",
+      "http://l0nk5erver.duckdns.org:5000/auth/login/email",
       {
         "email": email,
         "password": password
