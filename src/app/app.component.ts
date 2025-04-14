@@ -1,17 +1,16 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
-import {NgbConfig} from '@ng-bootstrap/ng-bootstrap';
-import { CatalogComponent } from './screens/catalog/catalog.component';
-import { LoginComponent } from "./screens/login/login.component";
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, CatalogComponent, LoginComponent],
+  imports: [RouterLink, RouterOutlet],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
 export class AppComponent {
-  constructor(ngbConfig: NgbConfig) {
-    ngbConfig.animation = true;
+  currentRoute: string = "";
+  constructor(private activatedRoute: ActivatedRoute) {}
+  ngOnInit(): void {
+    this.currentRoute = this.activatedRoute.snapshot.url.map(segment => segment.path).join('/');
   }
 }
