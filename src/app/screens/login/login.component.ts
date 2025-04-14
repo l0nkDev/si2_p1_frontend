@@ -24,7 +24,7 @@ export class LoginComponent {
     var password = this.password;
     this.token = "";
     this.http.post<Response>(
-      "http://l0nk5erver.duckdns.org:5000/auth/login/email",
+      "https://cors-anywhere.herokuapp.com/http://l0nk5erver.duckdns.org:5000/auth/login/email",
       {
         "email": email,
         "password": password
