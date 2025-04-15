@@ -1,9 +1,12 @@
 <div>
   <p>Usuario invitado ejemplo: raul{{"@"}}gmail.com     123</p>
+  <div style="display: flex; flex-direction: column;">
+    <label>E-mail</label>
+    <input [(ngModel)] = "email" type="email" maxlength="50" style="width: 25vw;"/>
+    <label>Contraseña</label>
+    <input [(ngModel)] = "password" type="password" maxlength="50" style="width: 25vw;"/>
+    <button (click)="login()" style="width: 75px;">Ingresar</button>
+  </div>
   <br>
-  <br>
-  <input [(ngModel)] = "email" />
-  <input [(ngModel)] = "password" />
-  <button (click)="login()">Ingresar</button>
-  {{ token != "" ? "Login válido" : "Login invalido" }}
+  <a routerLink="/register">Registrate</a>
 </div>

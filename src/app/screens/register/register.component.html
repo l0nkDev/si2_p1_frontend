@@ -1,0 +1,16 @@
+<div>
+  <div style="display: flex; flex-direction: column;">
+    <label>E-mail</label>
+    <input [(ngModel)] = "email" type="email" maxlength="50" style="width: 25vw;"/>
+    <label>Contraseña</label>
+    <input [(ngModel)] = "password" type="password" maxlength="50" style="width: 25vw;"/>
+    <label>Nombre</label>
+    <input [(ngModel)] = "name" maxlength="50" style="width: 25vw;"/>
+    <label>Apellido</label>
+    <input [(ngModel)] = "lname" maxlength="50" style="width: 25vw;"/>
+    <button (click)="register()" style="width: 90px;">Registrate</button>
+    {{ message }}
+    <br>
+  </div>
+  <a routerLink="/login">Ingresa</a>
+</div>

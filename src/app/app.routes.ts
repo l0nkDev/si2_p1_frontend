@@ -1,6 +1,8 @@
 import { LoginComponent } from './screens/login/login.component';
 import { Routes } from '@angular/router';
 import { CatalogComponent } from './screens/catalog/catalog.component';
+import { RegisterComponent } from './screens/register/register.component';
+import { LogoutComponent } from './screens/logout/logout.component';
 
 export const routes: Routes = [
   {
@@ -8,7 +10,15 @@ export const routes: Routes = [
     component: CatalogComponent,
   },
   {
+    path: 'register',
+    component: RegisterComponent,
+  },
+  {
     path: 'login',
     component: LoginComponent,
+  },
+  {
+    path: 'logout',
+    component: LogoutComponent,
   },
 ];
