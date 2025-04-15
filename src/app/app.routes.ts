@@ -3,6 +3,7 @@ import { Routes } from '@angular/router';
 import { CatalogComponent } from './screens/catalog/catalog.component';
 import { RegisterComponent } from './screens/register/register.component';
 import { LogoutComponent } from './screens/logout/logout.component';
+import { ProductComponent } from './screens/product/product.component';
 
 export const routes: Routes = [
   {
@@ -20,5 +21,9 @@ export const routes: Routes = [
   {
     path: 'logout',
     component: LogoutComponent,
+  },
+  {
+    path: 'product',
+    component: ProductComponent,
   },
 ];

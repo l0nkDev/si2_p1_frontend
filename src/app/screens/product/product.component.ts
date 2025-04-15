@@ -1,4 +1,3 @@
-import { ProductComponent } from './product/product.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 
@@ -11,22 +10,18 @@ export interface Response {
 }
 
 @Component({
-  selector: 'catalog',
-  templateUrl: './catalog.component.html',
-  imports: [ProductComponent],
+  selector: 'product',
+  templateUrl: './product.component.html',
 })
-
-export class CatalogComponent implements OnInit{
-  products: Response[] = [];
+export class ProductComponent implements OnInit{
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
   }));
 
   ngOnInit() {
-    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/products")
+    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/products/get")
     .subscribe(response => {
-      this.products = response;
     })
   }
 }
