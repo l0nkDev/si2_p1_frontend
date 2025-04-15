@@ -1,4 +1,4 @@
-import { ProductComponent } from './product/product.component';
+import { ProductComponent } from '../../components/product/product.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 

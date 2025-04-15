@@ -4,6 +4,7 @@ import { CatalogComponent } from './screens/catalog/catalog.component';
 import { RegisterComponent } from './screens/register/register.component';
 import { LogoutComponent } from './screens/logout/logout.component';
 import { ProductComponent } from './screens/product/product.component';
+import { CartComponent } from './screens/cart/cart.component';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,9 @@ export const routes: Routes = [
   {
     path: 'product',
     component: ProductComponent,
+  },
+  {
+    path: 'cart',
+    component: CartComponent,
   },
 ];

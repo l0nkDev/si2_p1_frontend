@@ -16,18 +16,23 @@ export class AppComponent implements OnInit{
   token: string | null = '';
   navlink1Status = '';
   navlink2Status = '';
+  navlink3Status = '';
+  navlink3Enabled = 'disabled';
 
   onRouteUpdate() {
     this.token = sessionStorage.getItem('token');
     if (this.token) {
       this.loginText = 'Cerrar Sesion';
       this.loginDestination = 'logout';
+      this.navlink3Enabled = '';
     } else {
       this.loginText = 'Iniciar Sesion';
       this.loginDestination = 'login';
+      this.navlink3Enabled = 'disabled';
     }
     this.navlink1Status = this._router.url === '/login' ? 'active' : '';
     this.navlink2Status = this._router.url === '/' ? 'active' : '';
+    this.navlink3Status = this._router.url === '/cart' ? 'active' : '';
   }
 
   ngOnInit() {
