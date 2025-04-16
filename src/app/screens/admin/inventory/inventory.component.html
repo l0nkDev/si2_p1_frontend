@@ -1,3 +1,5 @@
+
+<button (click)="CreateNewEntry()" class="btn btn-primary">Nuevo Producto</button>
 <table>
     <tr>
       <th><b>Nombre</b></th>
@@ -8,13 +10,6 @@
       <th><b>Tipo de Descuento</b></th>
     </tr>
     @for (prod of products; track $index) {
-      <tr>
-        <td><b>{{prod.name}}</b></td>
-        <td><a>{{prod.brand}}</a></td>
-        <td><a>{{prod.description}}</a></td>
-        <td><a>${{prod.price}}</a></td>
-        <td><a>${{prod.discount}}</a></td>
-        <td><a>{{prod.discount_type}}</a></td>
-      </tr>
+      <inventory_item (entryDeletedEvent)="OnChildButtonClick()" style="display: contents;" [id]="prod.id" [name]="prod.name" [brand]="prod.brand" [description]="prod.description" [price]="prod.price" [discount]="prod.discount" [discount_type]="prod.discount_type" [isEditable]="prod.isEditable"></inventory_item>
     }
 </table>

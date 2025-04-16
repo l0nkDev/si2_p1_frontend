@@ -1,0 +1,13 @@
+<tr>
+  <td><input [(ngModel)] = "name" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "lname" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "email" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "password" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "role" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "country" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "state" class="form-control" maxlength="50" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "address" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  
+  <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
+  <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>
+</tr>

@@ -1,6 +1,6 @@
 import { InventoryItemComponent } from '../../../components/inventory_item/inventory_item.component';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient, HttpXhrBackend } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpXhrBackend } from '@angular/common/http';
 
 export interface Response {
   id: number;
@@ -10,6 +10,7 @@ export interface Response {
   discount_type: string;
   price: number;
   discount: number;
+  isEditable: string;
 }
 
 @Component({
@@ -20,16 +21,40 @@ export interface Response {
 
 export class InventoryComponent implements OnInit{
   products: Response[] = [];
-
+  headers = new HttpHeaders;
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
   }));
 
-  ngOnInit() {
+  ngOnInit() {this.fetchContent()}
+
+  fetchContent() {
     this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/products")
     .subscribe(response => {
       this.products = response;
-      console.log(this.products)
     })
   }
+
+  OnChildButtonClick() { console.log("recibido"); this.fetchContent()}
+
+  CreateNewEntry() {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/admin/product/add",
+      {
+        "name": "Nuevo producto",
+        "brand": "_",
+        "description": "",
+        "price": 0,
+        "discount": 0,
+        "discount_type": "P",
+        "stock": 0,
+      }
+      ,{headers: this.headers})
+    .subscribe(_ => {
+      this.fetchContent();
+    });
+  }
+
 }
+
+

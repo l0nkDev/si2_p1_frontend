@@ -6,6 +6,7 @@ import { LogoutComponent } from './screens/logout/logout.component';
 import { ProductComponent } from './screens/product/product.component';
 import { CartComponent } from './screens/cart/cart.component';
 import { InventoryComponent } from './screens/admin/inventory/inventory.component';
+import { UsersComponent } from './screens/admin/users/users.component';
 
 export const routes: Routes = [
   {
@@ -35,5 +36,9 @@ export const routes: Routes = [
   {
     path: 'admin/inventory',
     component: InventoryComponent,
+  },
+  {
+    path: 'admin/users',
+    component: UsersComponent,
   },
 ];

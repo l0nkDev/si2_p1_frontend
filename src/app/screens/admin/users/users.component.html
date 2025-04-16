@@ -1,0 +1,17 @@
+
+<button (click)="CreateNewEntry()" class="btn btn-primary">Nuevo Producto</button>
+<table>
+    <tr>
+      <th><b>Nombre</b></th>
+      <th><b>Apellido</b></th>
+      <th><b>e-mail</b></th>
+      <th><b>Contraseña</b></th>
+      <th><b>Rol</b></th>
+      <th><b>Pais</b></th>
+      <th><b>Estado / Departamento</b></th>
+      <th><b>Direccion</b></th>
+    </tr>
+    @for (user of users; track $index) {
+      <users_item (entryDeletedEvent)="OnChildButtonClick()" style="display: contents;" [id]="user.id" [name]="user.name" [lname]="user.lname" [email]="user.email" [role]="user.role" [country]="user.country" [state]="user.state" [address]="user.address" [password]="user.password"></users_item>
+    }
+</table>

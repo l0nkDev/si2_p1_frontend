@@ -1,8 +1,11 @@
 <tr>
-  <td><b>{{name}}</b></td>
-  <td><a>{{brand}}</a></td>
-  <td><a>{{description}}</a></td>
-  <td><a>${{price}}</a></td>
-  <td><a>${{discount}}</a></td>
-  <td><a>${{discount_type}}</a></td>
+  <td><input [(ngModel)] = "name" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "brand" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "description" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "price" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "discount" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <td><input [(ngModel)] = "discount_type" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  
+  <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
+  <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>
 </tr>

@@ -44,6 +44,7 @@ export class CartComponent implements OnInit{
     this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart", {headers: this.headers})
     .subscribe(response => {
       this.entries = response;
+      console.log(response)
       this.total = 0;
       for (var entry of this.entries) {
         let finalprice = entry.product.discount_type === 'P' ? (entry.product.price * (100 - entry.product.discount)) / 100 : entry.product.price - entry.product.discount;
@@ -55,7 +56,7 @@ export class CartComponent implements OnInit{
   OnButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
     this.http.delete<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart", {headers: this.headers})
-    .subscribe(response => { this.fetchContent()})
+    .subscribe(response => {this.fetchContent()})
   }
 
   OnChildButtonClick() { console.log("recibido"); this.fetchContent()}

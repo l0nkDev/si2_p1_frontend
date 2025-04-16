@@ -10,7 +10,6 @@ import { Router } from '@angular/router';
 })
 export class CartItemComponent {
   isEditable = 'disabled';
-  constructor(private _router: Router) { }
   headers = new HttpHeaders();
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
