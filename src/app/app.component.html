@@ -20,6 +20,20 @@
           <li class="nav-item">
             <a class="nav-link {{navlink3Status}} {{navlink3Enabled}}" routerLink="/cart">Carrito</a>
           </li>
+          @if (isAdmin) {
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle {{navlink4Status}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Admin
+              </a>
+              <ul class="dropdown-menu">
+                <li><a class="dropdown-item" routerLink="/admin/inventory">Inventario</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </li>
+        }
         </ul>
       </div>
     </div>

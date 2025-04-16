@@ -1,5 +1,5 @@
 <div style="display: flex; flex-direction: column;">
   @for (prod of products; track $index) {
-    <product id={{prod.id}} name={{prod.name}} brand={{prod.brand}} description={{prod.description}} price={{prod.price}}></product>
+    <product [id]="prod.id" [name]="prod.name" [brand]="prod.brand" [description]="prod.description" [price]="prod.price"></product>
   }
 </div>

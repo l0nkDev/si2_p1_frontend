@@ -1,0 +1,20 @@
+<table>
+    <tr>
+      <th><b>Nombre</b></th>
+      <th><b>Marca</b></th>
+      <th><b>Descripción</b></th>
+      <th><b>Precio</b></th>
+      <th><b>Descuento</b></th>
+      <th><b>Tipo de Descuento</b></th>
+    </tr>
+    @for (prod of products; track $index) {
+      <tr>
+        <td><b>{{prod.name}}</b></td>
+        <td><a>{{prod.brand}}</a></td>
+        <td><a>{{prod.description}}</a></td>
+        <td><a>${{prod.price}}</a></td>
+        <td><a>${{prod.discount}}</a></td>
+        <td><a>{{prod.discount_type}}</a></td>
+      </tr>
+    }
+</table>

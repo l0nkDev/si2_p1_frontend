@@ -1,2 +1,7 @@
 <div style="display: flex; flex-direction: column;">
+  @for (entry of entries; track $index) {
+    <cart_item (entryDeletedEvent)="OnChildButtonClick()" [id]="entry.id" [name]="entry.product.name" [brand]="entry.product.brand" [description]="entry.product.description" [price]="entry.product.price" [quantity]="entry.quantity"></cart_item>
+  }
 </div>
+<a>Precio total: ${{total}}</a>
+<button class="btn btn-primary" (click)="OnButtonClick()">Vaciar carrito</button>

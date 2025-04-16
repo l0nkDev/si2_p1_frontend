@@ -1,4 +1,4 @@
-import { ProductComponent } from '../../components/product/product.component';
+import { InventoryItemComponent } from '../../../components/inventory_item/inventory_item.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 
@@ -7,16 +7,18 @@ export interface Response {
   name: string;
   brand: string;
   description: string;
+  discount_type: string;
   price: number;
+  discount: number;
 }
 
 @Component({
-  selector: 'catalog',
-  templateUrl: './catalog.component.html',
-  imports: [ProductComponent],
+  selector: 'inventory',
+  templateUrl: './Inventory.component.html',
+  imports: [InventoryItemComponent],
 })
 
-export class CatalogComponent implements OnInit{
+export class InventoryComponent implements OnInit{
   products: Response[] = [];
 
   private http = new HttpClient(new HttpXhrBackend({

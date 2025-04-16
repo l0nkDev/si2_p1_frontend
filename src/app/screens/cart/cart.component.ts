@@ -1,5 +1,5 @@
-import { ProductComponent } from '../../components/product/product.component';
-import { Component, OnInit } from '@angular/core';
+import { CartItemComponent } from '../../components/cart_item/cart_item.component';
+import { Component, OnInit, EventEmitter } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
 
 export interface Response {
@@ -7,6 +7,7 @@ export interface Response {
   cartid: number;
   productid: number;
   quantity: number;
+  product: Product;
 }
 
 export interface Product {
@@ -14,7 +15,7 @@ export interface Product {
   name: string;
   brand: string;
   description: string;
-  discount: string;
+  discount: number;
   discount_type: string;
   price: number;
 }
@@ -22,23 +23,40 @@ export interface Product {
 @Component({
   selector: 'cart',
   templateUrl: './cart.component.html',
-  imports: [ProductComponent],
+  imports: [CartItemComponent],
 })
 
 export class CartComponent implements OnInit{
+  total = 0;
   entries: Response[] = [];
   headers = new HttpHeaders();
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
   }));
 
-  
+
   ngOnInit() {
-    this.headers = this.headers.append('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.fetchContent()
+  }
+
+  fetchContent() {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
     this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart", {headers: this.headers})
     .subscribe(response => {
       this.entries = response;
-      console.log(this.entries)
+      this.total = 0;
+      for (var entry of this.entries) {
+        let finalprice = entry.product.discount_type === 'P' ? (entry.product.price * (100 - entry.product.discount)) / 100 : entry.product.price - entry.product.discount;
+        this.total = this.total + (finalprice * entry.quantity);
+      }
     })
   }
+
+  OnButtonClick() {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.delete<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart", {headers: this.headers})
+    .subscribe(response => { this.fetchContent()})
+  }
+
+  OnChildButtonClick() { console.log("recibido"); this.fetchContent()}
 }

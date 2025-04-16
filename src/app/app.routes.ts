@@ -5,6 +5,7 @@ import { RegisterComponent } from './screens/register/register.component';
 import { LogoutComponent } from './screens/logout/logout.component';
 import { ProductComponent } from './screens/product/product.component';
 import { CartComponent } from './screens/cart/cart.component';
+import { InventoryComponent } from './screens/admin/inventory/inventory.component';
 
 export const routes: Routes = [
   {
@@ -30,5 +31,9 @@ export const routes: Routes = [
   {
     path: 'cart',
     component: CartComponent,
+  },
+  {
+    path: 'admin/inventory',
+    component: InventoryComponent,
   },
 ];

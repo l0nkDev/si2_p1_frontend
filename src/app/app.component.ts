@@ -1,6 +1,5 @@
 import { OnInit } from '@angular/core';
 import { Component } from '@angular/core';
-import { OnSameUrlNavigation } from '@angular/router';
 import { Router, RouterLink, RouterOutlet } from '@angular/router';
 
 @Component({
@@ -11,13 +10,15 @@ import { Router, RouterLink, RouterOutlet } from '@angular/router';
 })
 export class AppComponent implements OnInit{
   constructor(private _router: Router) { }
+  isAdmin = true;
   loginText = '';
   loginDestination = '';
   token: string | null = '';
   navlink1Status = '';
   navlink2Status = '';
   navlink3Status = '';
-  navlink3Enabled = 'disabled';
+  navlink4Status = '';
+  navlink3Enabled = '';
 
   onRouteUpdate() {
     this.token = sessionStorage.getItem('token');
@@ -30,9 +31,10 @@ export class AppComponent implements OnInit{
       this.loginDestination = 'login';
       this.navlink3Enabled = 'disabled';
     }
-    this.navlink1Status = this._router.url === '/login' ? 'active' : '';
     this.navlink2Status = this._router.url === '/' ? 'active' : '';
-    this.navlink3Status = this._router.url === '/cart' ? 'active' : '';
+    this.navlink1Status = this._router.url.startsWith('/login') ? 'active' : '';
+    this.navlink3Status = this._router.url.startsWith('/cart') ? 'active' : '';
+    this.navlink4Status = this._router.url.startsWith('/admin') ? 'active' : '';
   }
 
   ngOnInit() {
