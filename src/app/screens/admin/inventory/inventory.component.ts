@@ -1,17 +1,8 @@
 import { InventoryItemComponent } from '../../../components/inventory_item/inventory_item.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpXhrBackend } from '@angular/common/http';
+import { Product } from '../../../interfaces/product';
 
-export interface Response {
-  id: number;
-  name: string;
-  brand: string;
-  description: string;
-  discount_type: string;
-  price: number;
-  discount: number;
-  isEditable: string;
-}
 
 @Component({
   selector: 'inventory',
@@ -20,7 +11,7 @@ export interface Response {
 })
 
 export class InventoryComponent implements OnInit{
-  products: Response[] = [];
+  products: Product[] = [];
   headers = new HttpHeaders;
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
@@ -29,7 +20,7 @@ export class InventoryComponent implements OnInit{
   ngOnInit() {this.fetchContent()}
 
   fetchContent() {
-    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/products")
+    this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products")
     .subscribe(response => {
       this.products = response;
     })

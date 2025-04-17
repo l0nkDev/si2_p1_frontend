@@ -1,5 +1,6 @@
 <input [(ngModel)] = "query" class="form-control me-2" type="search" placeholder="Buscar producto..." aria-label="Search">
 <button (click)="OnSearch()" class="btn btn-outline-success">Buscar</button>
+<br><button class="btn btn-primary" routerLink="/cart" routerLinkActive="router-link-active" >Ver carrito</button>
 <div style="display: flex; flex-direction: column;">
   @for (prod of products; track $index) {
     <product [product]="prod"></product>

@@ -1,14 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, RouterLink, ActivatedRoute } from '@angular/router';
 import { ProductListing } from '../../interfaces/product_listing';
 import { ProductComponent } from '../../components/product/product.component';
-import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'productscreen',
   templateUrl: './products_screen.component.html',
-  imports: [ProductComponent],
+  imports: [ProductComponent, RouterLink],
 })
 export class ProductsScreenComponent implements OnInit{
   console = console;
@@ -39,7 +38,7 @@ export class ProductsScreenComponent implements OnInit{
 
   OnCartButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart/add",
+    this.http.post("http://l0nk5erver.duckdns.org:5000/users/cart/add",
       {
         "id": this.id
       }

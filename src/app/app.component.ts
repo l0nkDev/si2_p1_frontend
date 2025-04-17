@@ -29,12 +29,11 @@ export class AppComponent implements OnInit{
   loginText = '';
   loginDestination = '';
   token: string | null = '';
-  navlink1Status = '';
-  navlink2Status = '';
-  navlink3Status = '';
-  navlink4Status = '';
-  navlink5Status = '';
-  navlink3Enabled = '';
+  loginStatus = '';
+  homeStatus = '';
+  meStatus = '';
+  adminStatus = '';
+  meEnabled = '';
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
@@ -55,17 +54,16 @@ export class AppComponent implements OnInit{
     if (this.token) {
       this.loginText = 'Cerrar Sesion';
       this.loginDestination = 'logout';
-      this.navlink3Enabled = '';
+      this.meEnabled = '';
     } else {
       this.loginText = 'Iniciar Sesion';
       this.loginDestination = 'login';
-      this.navlink3Enabled = 'disabled';
+      this.meEnabled = 'disabled';
     }
-    this.navlink2Status = this._router.url === '/' || this._router.url.startsWith('/product') ? 'active' : '';
-    this.navlink1Status = this._router.url.startsWith('/login') ? 'active' : '';
-    this.navlink3Status = this._router.url.startsWith('/cart') ? 'active' : '';
-    this.navlink4Status = this._router.url.startsWith('/purchases') ? 'active' : '';
-    this.navlink5Status = this._router.url.startsWith('/admin') ? 'active' : '';
+    this.homeStatus = this._router.url === '/' || this._router.url.startsWith('/product') || this._router.url.startsWith('/cart') || this._router.url.startsWith('/search')? 'active' : '';
+    this.loginStatus = this._router.url.startsWith('/login') || this._router.url.startsWith('/register') ? 'active' : '';
+    this.meStatus = this._router.url.startsWith('/me') ? 'active' : '';
+    this.adminStatus = this._router.url.startsWith('/admin') ? 'active' : '';
   }
 
   ngOnInit() {

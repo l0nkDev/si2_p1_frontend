@@ -9,6 +9,7 @@ import { CartComponent } from './screens/cart/cart.component';
 import { InventoryComponent } from './screens/admin/inventory/inventory.component';
 import { UsersComponent } from './screens/admin/users/users.component';
 import { PurchasesComponent } from './screens/purchases/purchases.component';
+import { InfoComponent } from './screens/info/info.component';
 
 export const routes: Routes = [
   {
@@ -39,11 +40,6 @@ export const routes: Routes = [
     component: ProductsScreenComponent,
   },
   {
-    path: 'cart',
-    title: 'Carrito',
-    component: CartComponent,
-  },
-  {
     path: 'admin',
     children: [
       {
@@ -65,8 +61,18 @@ export const routes: Routes = [
     component: SearchComponent,
   },
   {
-    path: 'purchases',
+    path: 'me/purchases',
     title: 'Compras',
     component: PurchasesComponent,
+  },
+  {
+    path: 'cart',
+    title: 'Carrito',
+    component: CartComponent,
+  },
+  {
+    path: 'me',
+    title: 'Informacion',
+    component: InfoComponent,
   },
 ];

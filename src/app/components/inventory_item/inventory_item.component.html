@@ -1,11 +1,16 @@
-<tr>
-  <td><input [(ngModel)] = "name" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "brand" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "description" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "price" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "discount" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "discount_type" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  
-  <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
-  <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>
-</tr>
+@if (product != null) {
+  <tr>
+    <td><input [(ngModel)] = "product.name" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+    <td><input [(ngModel)] = "product.brand" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+    <td><input [(ngModel)] = "product.description" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+    <td><input [(ngModel)] = "product.price" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+    <td><input [(ngModel)] = "product.discount" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+    <td><input [(ngModel)] = "product.discount_type" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+    <td><input value="{{product.discount_type == 'P' ? (product.price*(1-(product.discount * 0.01))).toFixed(2) : (product.price - product.discount).toFixed(2) }}" class="form-control" disabled="true"></td>
+    <td><input [(ngModel)] = "product.stock" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+
+    <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
+    <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>
+  </tr>
+}
+

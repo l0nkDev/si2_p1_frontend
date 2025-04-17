@@ -2,7 +2,7 @@ import { ProductComponent } from '../../components/product/product.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { Product } from '../../interfaces/product';
 
 export interface Response {
@@ -18,7 +18,7 @@ export interface Response {
 @Component({
   selector: 'catalog',
   templateUrl: './catalog.component.html',
-  imports: [ProductComponent, FormsModule],
+  imports: [ProductComponent, FormsModule, RouterLink],
 })
 
 export class CatalogComponent implements OnInit{
