@@ -1,23 +1,20 @@
-import { Component, Input, numberAttribute, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Product } from '../../interfaces/product';
+import { provideCloudinaryLoader } from '@angular/common';
 
 @Component({
   selector: 'product',
   templateUrl: './product.component.html',
 })
+
 export class ProductComponent implements OnInit{
+  @Input() product: Product | null = null
   buttonStatus = 'disabled'
   token: string | null = '';
   constructor(private _router: Router) { }
   headers = new HttpHeaders();
-  @Input({transform: numberAttribute}) id: number = 0;
-  @Input() name: string = '';
-  @Input() brand: string = '';
-  @Input() description: string = '';
-  @Input() discount_type: string = '';
-  @Input({transform: numberAttribute}) price: number = 0;
-  @Input({transform: numberAttribute}) discount: number = 0;
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
@@ -30,18 +27,18 @@ export class ProductComponent implements OnInit{
   }
 
   OnButtonClick() {
-        this._router.navigateByUrl('/product?p='+ this.id)
+        this._router.navigateByUrl('/product?p='+ this.product?.id)
   }
 
   OnCartButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart/add",
+    this.http.post("http://l0nk5erver.duckdns.org:5000/users/cart/add",
       {
-        "id": this.id
+        "id": this.product?.id
       }
       , {headers: this.headers})
     .subscribe(_ => {
-      alert('"' + this.name + '" ha sido agregado al carrito.');
+      alert('"' + this.product?.name + '" ha sido agregado al carrito.');
     })
 }
 }

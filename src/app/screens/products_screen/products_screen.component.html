@@ -1,0 +1,21 @@
+@if (listing != null) {<ul>
+  <li><b>{{listing.name}}</b></li>
+  <li><a>{{listing.brand}}</a></li>
+  <li><a>{{listing.description}}</a></li>
+  @if (listing.discount == 0) {
+    <li><a>${{listing.price}}</a></li>
+  } @else {
+    <li><s>${{listing.price}}</s><b>{{" $" + (listing.discount_type === 'P' ? listing.price*(1-(listing.discount*0.01)) : listing.price-listing.discount) }}</b></li>
+  }
+  <button (click)="OnCartButtonClick()" class="btn btn-primary {{buttonStatus}}">Agregar al carrito</button>
+  <p></p>
+</ul>
+<div style="display: flex; flex-direction: row;">
+  @for (prod of listing.recommendations; track $index) {
+    {{console.log(prod.name)}}
+    <product [product]="prod"></product>
+  }
+</div>
+}
+
+  

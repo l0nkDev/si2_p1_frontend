@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Product } from '../../interfaces/product';
 
 export interface Response {
   id: number;
@@ -21,18 +22,18 @@ export interface Response {
 })
 
 export class CatalogComponent implements OnInit{
+  products: Product[] = [];
   constructor(private _router: Router) { }
   query = '';
-  products: Response[] = [];
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
   }));
 
   ngOnInit() {
-    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/products")
-    .subscribe(response => {
-      this.products = response;
+    this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products")
+    .subscribe(_ => {
+      this.products = _;
       console.log(this.products)
     })
   }

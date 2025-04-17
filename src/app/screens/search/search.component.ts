@@ -3,16 +3,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-
-export interface Response {
-  id: number;
-  name: string;
-  brand: string;
-  description: string;
-  discount_type: string;
-  price: number;
-  discount: number;
-}
+import { Product } from '../../interfaces/product';
 
 @Component({
   selector: 'search',
@@ -21,11 +12,11 @@ export interface Response {
 })
 
 export class SearchComponent implements OnInit{
+  products: Product[] = [];
   query = '';
   @Input() set q(query: string) {this.query = query}
   
   constructor(private route: ActivatedRoute, private _router: Router) {}
-  products: Response[] = [];
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
@@ -41,9 +32,9 @@ export class SearchComponent implements OnInit{
   }
 
   fetchContents() {    
-    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/products/search?q=" + this.query)
-    .subscribe(response => {
-      this.products = response;
+    this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products/search?q=" + this.query)
+    .subscribe(_ => {
+      this.products = _;
       console.log(this.products)
     })
   }

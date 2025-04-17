@@ -4,7 +4,7 @@ import { CatalogComponent } from './screens/catalog/catalog.component';
 import { SearchComponent } from './screens/search/search.component';
 import { RegisterComponent } from './screens/register/register.component';
 import { LogoutComponent } from './screens/logout/logout.component';
-import { ProductComponent } from './screens/product/product.component';
+import { ProductsScreenComponent } from './screens/products_screen/products_screen.component';
 import { CartComponent } from './screens/cart/cart.component';
 import { InventoryComponent } from './screens/admin/inventory/inventory.component';
 import { UsersComponent } from './screens/admin/users/users.component';
@@ -32,11 +32,11 @@ export const routes: Routes = [
   },
   {
     path: 'product',
-    component: ProductComponent,
+    component: ProductsScreenComponent,
   },
   {
     path: 'product:p',
-    component: ProductComponent,
+    component: ProductsScreenComponent,
   },
   {
     path: 'cart',

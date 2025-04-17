@@ -1,33 +1,23 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
 import { Router, ActivatedRoute } from '@angular/router';
-
-export interface Response {
-  id: number;
-  name: string;
-  brand: string;
-  description: string;
-  discount_type: string;
-  price: number;
-  discount: number;
-}
+import { ProductListing } from '../../interfaces/product_listing';
+import { ProductComponent } from '../../components/product/product.component';
+import { Product } from '../../interfaces/product';
 
 @Component({
-  selector: 'product',
-  templateUrl: './product.component.html',
+  selector: 'productscreen',
+  templateUrl: './products_screen.component.html',
+  imports: [ProductComponent],
 })
-export class ProductComponent implements OnInit{
+export class ProductsScreenComponent implements OnInit{
+  console = console;
   token: string | null = '';
   buttonStatus = 'disabled'
   headers = new HttpHeaders();
   id = 0;
   @Input() set p(query: number) {this.id = query}
-  name = '';
-  brand = '';
-  description = '';
-  discount_type = '';
-  price = 0;
-  discount = 0;
+  listing: ProductListing | null = null
 
   constructor(private route: ActivatedRoute, private _router: Router) {}
 
@@ -40,14 +30,10 @@ export class ProductComponent implements OnInit{
     if (this.token) { this.buttonStatus = ''}
     else {this.buttonStatus = 'disabled'}
 
-    this.http.get<Response>("http://l0nk5erver.duckdns.org:5000/products/get?id=" + this.id)
-    .subscribe(response => {
-      this.name = response.name;
-      this.brand = response.brand;
-      this.description = response.description;
-      this.discount = response.discount;
-      this.price = response.price;
-      this.discount_type = response.discount_type;
+    this.http.get<ProductListing>("http://l0nk5erver.duckdns.org:5000/products/get?id=" + this.id)
+    .subscribe(_ => {
+      this.listing = _
+      console.log(this.listing)
     })
   }
 
@@ -59,7 +45,7 @@ export class ProductComponent implements OnInit{
       }
       , {headers: this.headers})
     .subscribe(_ => {
-      alert('"' + this.name + '" ha sido agregado al carrito.');
+      alert('"' + this.listing?.name + '" ha sido agregado al carrito.');
     })
 }
 }

@@ -2,6 +2,6 @@
 <button (click)="OnSearch()" class="btn btn-outline-success">Buscar</button>
 <div style="display: flex; flex-direction: column;">
   @for (prod of products; track $index) {
-    <product [id]="prod.id" [name]="prod.name" [brand]="prod.brand" [description]="prod.description" [price]="prod.price" [discount]="prod.discount" [discount_type]="prod.discount_type"></product>
+    <product [product]="prod"></product>
   }
 </div>
