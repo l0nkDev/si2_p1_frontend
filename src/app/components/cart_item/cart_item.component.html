@@ -2,7 +2,11 @@
   <li><b>{{name}}</b></li>
   <li><a>{{brand}}</a></li>
   <li><a>{{description}}</a></li>
-  <li><a>${{price}}</a></li>
+  @if (discount == 0) {
+    <li><a>${{price}}</a></li>
+  } @else {
+    <li><s>${{price}}</s><b>{{" $" + (discount_type === 'P' ? price*(1-(discount*0.01)) : price-discount) }}</b></li>
+  }
   <input [(ngModel)] = "quantity" type="number" min="1" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}">
   <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
   <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>

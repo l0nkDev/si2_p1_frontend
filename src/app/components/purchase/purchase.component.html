@@ -1,0 +1,10 @@
+<ul>
+  <li><b>{{response?.paid_on}}</b></li>
+  <li><b>{{response?.total_paid}}</b></li>
+  <li><b>{{response?.payment_method}}</b></li>
+  <li><b>{{response?.delivery_status}}</b></li>
+  @for (item of response?.items; track $index) {
+    <purchase_item [response]="item"></purchase_item>
+  }
+  <p></p>
+</ul>

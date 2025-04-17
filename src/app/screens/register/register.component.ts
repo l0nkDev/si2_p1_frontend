@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
 import {FormsModule} from '@angular/forms';
 import {HttpClient, HttpXhrBackend} from '@angular/common/http';
-import { RouterLink } from '@angular/router';
+import { RouterLink, Router } from '@angular/router';
 
 export interface Response {
   access_token: string
-  detail: string
+  id: number
 }
 
 @Component({
@@ -14,6 +14,7 @@ export interface Response {
   imports: [FormsModule, RouterLink],
 })
 export class RegisterComponent {
+  constructor(private _router: Router) { }
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
   }));
@@ -39,6 +40,10 @@ export class RegisterComponent {
         "name": name,
         "lname": lname
       }
-    ).subscribe(response => {this.message = 'Registro exitoso'});
+    ).subscribe(response => {this.message = 'Registro exitoso'
+      sessionStorage.clear()
+      sessionStorage.setItem('token', response.access_token)
+      this._router.navigateByUrl('/')
+    });
   }
 }

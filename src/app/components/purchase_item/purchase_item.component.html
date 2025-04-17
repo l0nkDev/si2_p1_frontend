@@ -1,0 +1,12 @@
+<ul>
+  <li>{{response?.name}}</li>
+  <li>{{response?.brand}}</li>
+  <li>
+    @if (response?.dprice == response?.price) {
+      {{response?.price}} x{{response?.quantity}} = {{response?.fprice}}
+    } @else {
+      <s>{{response?.price}}</s> {{response?.dprice}} x{{response?.quantity}} = {{response?.fprice}}
+    }
+  </li>
+  <p></p>
+</ul>

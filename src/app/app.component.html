@@ -20,9 +20,12 @@
           <li class="nav-item">
             <a class="nav-link {{navlink3Status}} {{navlink3Enabled}}" routerLink="/cart">Carrito</a>
           </li>
-          @if (isAdmin) {
+          <li class="nav-item">
+            <a class="nav-link {{navlink4Status}} {{navlink3Enabled}}" routerLink="/purchases">Compras</a>
+          </li>
+          @if (role === 'admin' || role == 'owner') {
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle {{navlink4Status}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle {{navlink5Status}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                 Admin
               </a>
               <ul class="dropdown-menu">
@@ -36,7 +39,7 @@
       </div>
     </div>
 
-    <a class="navbar-brand" routerLink="/">Parcial 1</a>
+    <a class="navbar-brand" routerLink="/">{{name + " " + lname}}</a>
   </div>
 </nav>
 <div style="height: 56px;"></div>

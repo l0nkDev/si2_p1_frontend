@@ -18,7 +18,9 @@ export class CartItemComponent {
   @Input() name: string = '';
   @Input() brand: string = '';
   @Input() description: string = '';
+  @Input() discount_type: string = '';
   @Input({transform: numberAttribute}) price: number = 0;
+  @Input({transform: numberAttribute}) discount: number = 0;
   @Input({transform: numberAttribute}) quantity: number = 0;
   @Output() entryDeletedEvent = new EventEmitter<string>()
 

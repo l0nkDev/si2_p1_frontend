@@ -1,24 +1,29 @@
 import { LoginComponent } from './screens/login/login.component';
 import { Routes } from '@angular/router';
 import { CatalogComponent } from './screens/catalog/catalog.component';
+import { SearchComponent } from './screens/search/search.component';
 import { RegisterComponent } from './screens/register/register.component';
 import { LogoutComponent } from './screens/logout/logout.component';
 import { ProductComponent } from './screens/product/product.component';
 import { CartComponent } from './screens/cart/cart.component';
 import { InventoryComponent } from './screens/admin/inventory/inventory.component';
 import { UsersComponent } from './screens/admin/users/users.component';
+import { PurchasesComponent } from './screens/purchases/purchases.component';
 
 export const routes: Routes = [
   {
     path: '',
+    title: 'Inicio',
     component: CatalogComponent,
   },
   {
     path: 'register',
+    title: 'Registro',
     component: RegisterComponent,
   },
   {
     path: 'login',
+    title: 'Ingreso',
     component: LoginComponent,
   },
   {
@@ -30,15 +35,38 @@ export const routes: Routes = [
     component: ProductComponent,
   },
   {
+    path: 'product:p',
+    component: ProductComponent,
+  },
+  {
     path: 'cart',
+    title: 'Carrito',
     component: CartComponent,
   },
   {
-    path: 'admin/inventory',
-    component: InventoryComponent,
+    path: 'admin',
+    children: [
+      {
+        path: 'inventory',
+        component: InventoryComponent,
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+      },
+    ]
   },
   {
-    path: 'admin/users',
-    component: UsersComponent,
+    path: 'search',
+    component: SearchComponent,
+  },
+  {
+    path: 'search:q',
+    component: SearchComponent,
+  },
+  {
+    path: 'purchases',
+    title: 'Compras',
+    component: PurchasesComponent,
   },
 ];

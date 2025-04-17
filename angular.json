@@ -13,6 +13,9 @@
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            "prerender": {
+              "discoverRoutes": false
+            },
             "outputPath": "dist/si2_p1_frontend",
             "index": "src/index.html",
             "browser": "src/main.ts",

@@ -15,7 +15,9 @@ export class ProductComponent implements OnInit{
   @Input() name: string = '';
   @Input() brand: string = '';
   @Input() description: string = '';
+  @Input() discount_type: string = '';
   @Input({transform: numberAttribute}) price: number = 0;
+  @Input({transform: numberAttribute}) discount: number = 0;
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
@@ -28,14 +30,18 @@ export class ProductComponent implements OnInit{
   }
 
   OnButtonClick() {
-        this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-        this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart/add",
-          {
-            "id": this.id
-          }
-          , {headers: this.headers})
-        .subscribe(_ => {
-          this._router.navigateByUrl('/cart');
-        })
+        this._router.navigateByUrl('/product?p='+ this.id)
   }
+
+  OnCartButtonClick() {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart/add",
+      {
+        "id": this.id
+      }
+      , {headers: this.headers})
+    .subscribe(_ => {
+      alert('"' + this.name + '" ha sido agregado al carrito.');
+    })
+}
 }

@@ -59,5 +59,11 @@ export class CartComponent implements OnInit{
     .subscribe(response => {this.fetchContent()})
   }
 
+  OnCheckoutClick() {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart/checkout", null, {headers: this.headers})
+    .subscribe(response => {this.fetchContent()})
+  }
+
   OnChildButtonClick() { console.log("recibido"); this.fetchContent()}
 }
