@@ -1,10 +1,13 @@
 
 <br><button class="btn btn-primary" routerLink="/cart" routerLinkActive="router-link-active" >Ver carrito</button>
 @if (listing != null) {<ul>
+  <img src="{{'http://l0nk5erver.duckdns.org:5000/products/img/'+listing.id+'.png'}}" alt="" style="height: 150px; width: 150px;">
   <li><b>{{listing.name}}</b></li>
   <li><a>{{listing.brand}}</a></li>
   <li><a>{{listing.description}}</a></li>
   <li><a>✰{{listing.rating}}</a></li>
+  <td><input [(ngModel)] = "rating" class="form-control" type="number" min="1" max="5" step="0.1"></td>
+  <button (click)="OnRateClick()" class="btn btn-primary">Calificar producto</button>
   @if (listing.discount == 0) {
     <li><a>${{listing.price}}</a></li>
   } @else {

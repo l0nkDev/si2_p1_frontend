@@ -9,10 +9,8 @@
     <li><b>{{response.payment_method}}</b></li>
     <li><b>{{response.delivery_status}}</b></li>
     <li><b>✰{{response.rating}}</b></li>
-    @if (response.rating == 0 && response.delivery_status == "Entregado") {
-      <td><input [(ngModel)] = "rating" class="form-control" type="number" min="1" max="5" step="0.1"></td>
-      <button (click)="OnRateClick()" class="btn btn-primary">Enviar</button>
-    }
+    <td><input [(ngModel)] = "rating" class="form-control" type="number" min="1" max="5" step="0.1"></td>
+    <button (click)="OnRateClick()" class="btn btn-primary">Calificar servicio</button>
     @for (item of response.items; track $index) {
       <purchase_item [response]="item"></purchase_item>
     }

@@ -2,6 +2,7 @@ import { CartItemComponent } from '../../../components/cart_item/cart_item.compo
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
 import { User } from '../../../interfaces/user';
+import { Router } from '@angular/router';
 
 export interface Response {
   id: number;
@@ -29,6 +30,7 @@ export interface Product {
 })
 
 export class CartComponent implements OnInit{
+  constructor(private _router: Router) { }
   vip: string = '';
   total = 0;
   entries: Response[] = [];
@@ -66,7 +68,7 @@ export class CartComponent implements OnInit{
   OnCheckoutClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
     this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart/checkout", null, {headers: this.headers})
-    .subscribe(response => {this.fetchContent()})
+    .subscribe(response => {this._router.navigateByUrl('/purchases')})
   }
 
   OnChildButtonClick() { console.log("recibido"); this.fetchContent()}

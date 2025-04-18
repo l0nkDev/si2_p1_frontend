@@ -38,15 +38,7 @@ export const routes: Routes = [
     component: ProductsScreenComponent,
   },
   {
-    path: 'product:p',
-    component: ProductsScreenComponent,
-  },
-  {
     path: 'search',
-    component: SearchComponent,
-  },
-  {
-    path: 'search:q',
     component: SearchComponent,
   },
   {
