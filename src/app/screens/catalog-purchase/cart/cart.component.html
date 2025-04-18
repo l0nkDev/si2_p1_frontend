@@ -1,0 +1,13 @@
+<div style="display: flex; flex-direction: column;">
+  @for (entry of entries; track $index) {
+    <cart_item (entryDeletedEvent)="OnChildButtonClick()" [rating]="entry.product.rating" [id]="entry.id" [discount]="entry.product.discount" [discount_type]="entry.product.discount_type" [name]="entry.product.name" [brand]="entry.product.brand" [description]="entry.product.description" [price]="entry.product.price" [quantity]="entry.quantity"></cart_item>
+  }
+</div>
+@if (vip === 'Y') {
+  <a>Precio total: <s>${{total}}</s><b> 15% Descuento de VIP: ${{(total*0.85).toFixed(2)}}</b></a>
+} @else {
+<a>Precio total: ${{total}}</a>
+}
+<br>
+<button class="btn btn-primary" (click)="OnButtonClick()">Vaciar carrito</button>
+<button class="btn btn-primary" (click)="OnCheckoutClick()">Pagar</button>

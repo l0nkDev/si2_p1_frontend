@@ -1,28 +1,9 @@
-import { PurchaseComponent } from '../../components/purchase/purchase.component';
+import { PurchaseComponent } from '../../../components/purchase/purchase.component';
 import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpXhrBackend } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Purchase } from '../../../interfaces/purchase';
 
-export interface Response {
-  id: number;
-  total_paid: number;
-  paid_on: string;
-  payment_method: string;
-  delivery_status: string;
-  items: Item[];
-}
-
-export interface Item {
-  id: number;
-  productid: number;
-  name: string;
-  brand: string;
-  quantity: number;
-  price: number;
-  dprice: number;
-  fprice: number;
-}
 
 @Component({
   selector: 'purchases',
@@ -32,7 +13,7 @@ export interface Item {
 
 export class PurchasesComponent implements OnInit{
   headers = new HttpHeaders();
-  items: Response[] = [];
+  items: Purchase[] = [];
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
@@ -44,7 +25,7 @@ export class PurchasesComponent implements OnInit{
 
   fetchContent() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/users/purchases", {headers: this.headers})
+    this.http.get<Purchase[]>("http://l0nk5erver.duckdns.org:5000/users/purchases", {headers: this.headers})
     .subscribe(response => {
       this.items = response;
       console.log(response)

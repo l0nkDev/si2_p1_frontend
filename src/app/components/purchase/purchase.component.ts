@@ -2,39 +2,23 @@ import { Component, Input, numberAttribute, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { PurchaseItemComponent } from '../purchase_item/purchase_item.component';
+import { Purchase } from '../../interfaces/purchase';
+import { FormsModule } from '@angular/forms';
 
-export interface Response {
-  id: number;
-  total_paid: number;
-  paid_on: string;
-  payment_method: string;
-  delivery_status: string;
-  items: Item[];
-}
-
-export interface Item {
-  id: number;
-  productid: number;
-  name: string;
-  brand: string;
-  quantity: number;
-  price: number;
-  dprice: number;
-  fprice: number;
-}
 
 @Component({
   selector: 'purchase',
   templateUrl: './purchase.component.html',
-    imports: [PurchaseItemComponent],
+    imports: [FormsModule, PurchaseItemComponent],
 })
 
 export class PurchaseComponent implements OnInit{
+  rating = 5;
   buttonStatus = 'disabled'
   token: string | null = '';
   constructor(private _router: Router) { }
   headers = new HttpHeaders();
-  @Input() response: Response | null = null
+  @Input() response: Purchase | null = null
 
   private http = new HttpClient(new HttpXhrBackend({
     build: () => new XMLHttpRequest()
@@ -43,4 +27,16 @@ export class PurchaseComponent implements OnInit{
   ngOnInit() {
   }
 
+  OnRateClick() {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.post("http://l0nk5erver.duckdns.org:5000/users/purchases/rate",
+      {
+        "id": this.response?.id,
+        'rating': this.rating
+      }
+      , {headers: this.headers})
+    .subscribe(_ => {
+      alert('Rating enviado.');
+    })
+}
 }

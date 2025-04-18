@@ -1,4 +1,4 @@
-import { Component, Input, Output, numberAttribute, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
 import { Product } from '../../interfaces/product';
@@ -9,6 +9,7 @@ import { Product } from '../../interfaces/product';
   imports: [FormsModule]
 })
 export class InventoryItemComponent {
+  files: any[] = [];
   @Input() product: Product | null = null
   isEditable = 'disabled';
   buttonStatus = 'disabled'
@@ -51,5 +52,25 @@ export class InventoryItemComponent {
         console.log("emitido")
       });
     }
+  }
+
+  OnFileChange(event: any) {
+    this.files = event.srcElement.files
+    console.log("archivo")
+    console.log(this.files[0]) 
+  }
+  
+  OnImageButtonClick() { 
+    console.log("boton")
+    let formData = new FormData();
+    formData.append("file", this.files[0], this.files[0].name);
+    console.log(formData)
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.post("http://l0nk5erver.duckdns.org:5000/products/img?id="+this.product?.id, formData, {headers: this.headers}).subscribe(
+      (r)=>{
+        this.entryDeletedEvent.emit("")
+        alert("imagen subida")
+      }
+    )
   }
 }

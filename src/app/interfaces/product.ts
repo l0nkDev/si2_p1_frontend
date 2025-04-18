@@ -7,6 +7,7 @@ export interface Product {
     discount: number;
     discount_type: string;
     stock: number;
+    rating: number;
     date_added: string;
   }
   

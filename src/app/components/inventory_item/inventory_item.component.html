@@ -1,5 +1,9 @@
 @if (product != null) {
   <tr>
+    <td><img src="{{'http://l0nk5erver.duckdns.org:5000/products/img/'+product.id+'.png'}}" alt="" style="height: 64px; width: 64px;">  
+    <input (change)="OnFileChange($event)" type="file" name="file" id="file" accept="image">
+    <button (click)="OnImageButtonClick()" class="btn btn-primary">Subir imagen</button>
+    </td>
     <td><input [(ngModel)] = "product.name" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
     <td><input [(ngModel)] = "product.brand" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
     <td><input [(ngModel)] = "product.description" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>

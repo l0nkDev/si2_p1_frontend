@@ -1,10 +1,21 @@
-<ul>
-  <li><b>{{response?.paid_on}}</b></li>
-  <li><b>{{response?.total_paid}}</b></li>
-  <li><b>{{response?.payment_method}}</b></li>
-  <li><b>{{response?.delivery_status}}</b></li>
-  @for (item of response?.items; track $index) {
-    <purchase_item [response]="item"></purchase_item>
-  }
-  <p></p>
-</ul>
+@if (response != null) {
+  <ul>
+    <li><b>{{response.paid_on}}</b></li>
+    @if (response.vip === 'Y') {
+      <li><s>${{response.total_paid}}</s><b> Descuento 15% VIP: ${{(response.total_paid*0.85).toFixed(2)}}</b></li>
+    } @else {
+      <li><b>{{response.total_paid}}</b></li>
+    }
+    <li><b>{{response.payment_method}}</b></li>
+    <li><b>{{response.delivery_status}}</b></li>
+    <li><b>✰{{response.rating}}</b></li>
+    @if (response.rating == 0 && response.delivery_status == "Entregado") {
+      <td><input [(ngModel)] = "rating" class="form-control" type="number" min="1" max="5" step="0.1"></td>
+      <button (click)="OnRateClick()" class="btn btn-primary">Enviar</button>
+    }
+    @for (item of response.items; track $index) {
+      <purchase_item [response]="item"></purchase_item>
+    }
+    <p></p>
+  </ul>
+}

@@ -1,8 +1,10 @@
 @if (product != null) {
+  <img src="{{'http://l0nk5erver.duckdns.org:5000/products/img/'+product.id+'.png'}}" alt="" style="height: 150px; width: 150px;">
   <ul>
     <li><b>{{product.name}}</b></li>
     <li><a>{{product.brand}}</a></li>
     <li><a>{{product.description}}</a></li>
+    <li><a>✰{{product.rating}}</a></li>
     @if (product.discount == 0) {
       <li><a>${{product.price}}</a></li>
     } @else {

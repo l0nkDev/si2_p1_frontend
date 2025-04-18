@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClient, HttpHeaders, HttpXhrBackend } from '@angular/common/http';
-import { User } from '../../interfaces/user';
+import { User } from '../../../interfaces/user';
 
 @Component({
   selector: 'info',

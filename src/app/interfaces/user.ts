@@ -9,4 +9,5 @@ export interface User {
   state: string;
   address: string;
   access_token: string;
+  vip: string;
 }

@@ -1,6 +1,7 @@
-import { CartItemComponent } from '../../components/cart_item/cart_item.component';
-import { Component, OnInit, EventEmitter } from '@angular/core';
+import { CartItemComponent } from '../../../components/cart_item/cart_item.component';
+import { Component, OnInit } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
+import { User } from '../../../interfaces/user';
 
 export interface Response {
   id: number;
@@ -17,6 +18,7 @@ export interface Product {
   description: string;
   discount: number;
   discount_type: string;
+  rating: number;
   price: number;
 }
 
@@ -27,6 +29,7 @@ export interface Product {
 })
 
 export class CartComponent implements OnInit{
+  vip: string = '';
   total = 0;
   entries: Response[] = [];
   headers = new HttpHeaders();
@@ -41,6 +44,7 @@ export class CartComponent implements OnInit{
 
   fetchContent() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.get<User>("http://l0nk5erver.duckdns.org:5000/users/self", {headers: this.headers}).subscribe(_ => {this.vip = _.vip;})
     this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart", {headers: this.headers})
     .subscribe(response => {
       this.entries = response;

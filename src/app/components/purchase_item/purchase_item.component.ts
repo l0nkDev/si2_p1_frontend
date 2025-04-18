@@ -1,15 +1,5 @@
 import { Component, Input } from '@angular/core';
-
-export interface Item {
-  id: number;
-  productid: number;
-  name: string;
-  brand: string;
-  quantity: number;
-  price: number;
-  dprice: number;
-  fprice: number;
-}
+import { PurchaseItem } from '../../interfaces/purchase_item';
 
 @Component({
   selector: 'purchase_item',
@@ -17,5 +7,5 @@ export interface Item {
 })
 
 export class PurchaseItemComponent {
-  @Input() response: Item | null = null
+  @Input() response: PurchaseItem | null = null
 }

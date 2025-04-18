@@ -24,28 +24,38 @@
             <ul class="dropdown-menu">
               <li><a class="dropdown-item" routerLink="/me">Informacion de usuario</a></li>
               <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" routerLink="/me/cart">Carrito de compras</a></li>
-              <li><hr class="dropdown-divider"></li>
-              <li><a class="dropdown-item" routerLink="/me/purchases">Historial de compras</a></li>
+              <li><a class="dropdown-item" routerLink="/purchases">Historial de compras</a></li>
             </ul>
           </li>
-          @if (role === 'admin' || role == 'owner') {
+          @if (user?.role === 'admin' || user?.role == 'owner') {
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle {{adminStatus}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                Admin
+                Administracion
               </a>
               <ul class="dropdown-menu">
-                <li><a class="dropdown-item" routerLink="/admin/inventory">Inventario</a></li>
+                <li><a class="dropdown-item" routerLink="/inventory">Inventario</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" routerLink="/admin/users">Usuarios</a></li>
+                <li><a class="dropdown-item" routerLink="/users">Usuarios</a></li>
               </ul>
             </li>
         }
+        @if (user?.role === 'delivery' || user?.role == 'owner') {
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle {{adminStatus}}" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              Logistica
+            </a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" routerLink="/deliveries">Asignacion de entregas</a></li>
+              <li><hr class="dropdown-divider"></li>
+              <li><a class="dropdown-item" routerLink="/assignments">Entregas asignadas</a></li>
+            </ul>
+          </li>
+      }
         </ul>
       </div>
     </div>
 
-    <a class="navbar-brand" routerLink="/">{{name + " " + lname}}</a>
+    <a class="navbar-brand" routerLink="/">{{(user?.vip === 'Y' ? "VIP - " : "") + user?.name + " " + user?.lname}}</a>
   </div>
 </nav>
 <div style="height: 56px;"></div>

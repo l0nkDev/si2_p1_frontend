@@ -1,8 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpXhrBackend, HttpHeaders } from '@angular/common/http';
 import { Router, RouterLink, ActivatedRoute } from '@angular/router';
-import { ProductListing } from '../../interfaces/product_listing';
-import { ProductComponent } from '../../components/product/product.component';
+import { ProductListing } from '../../../interfaces/product_listing';
+import { ProductComponent } from '../../../components/product/product.component';
 
 @Component({
   selector: 'productscreen',

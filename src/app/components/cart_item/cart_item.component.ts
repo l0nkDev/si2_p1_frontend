@@ -1,7 +1,6 @@
 import { Component, Input, Output, numberAttribute, EventEmitter } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpXhrBackend } from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'cart_item',
@@ -20,6 +19,7 @@ export class CartItemComponent {
   @Input() description: string = '';
   @Input() discount_type: string = '';
   @Input({transform: numberAttribute}) price: number = 0;
+  @Input({transform: numberAttribute}) rating: number = 0;
   @Input({transform: numberAttribute}) discount: number = 0;
   @Input({transform: numberAttribute}) quantity: number = 0;
   @Output() entryDeletedEvent = new EventEmitter<string>()

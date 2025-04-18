@@ -1,0 +1,5 @@
+<div style="display: flex; flex-direction: column;">
+  @for (item of items; track $index) {
+    <assigned_delivery_item [response]="item"></assigned_delivery_item>
+  }
+</div>

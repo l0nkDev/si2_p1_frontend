@@ -1,9 +1,9 @@
-import { ProductComponent } from '../../components/product/product.component';
+import { ProductComponent } from '../../../components/product/product.component';
 import { Component, OnInit, Input } from '@angular/core';
 import { HttpClient, HttpXhrBackend } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { Product } from '../../interfaces/product';
+import { Product } from '../../../interfaces/product';
 
 @Component({
   selector: 'search',
