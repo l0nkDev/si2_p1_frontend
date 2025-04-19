@@ -1,18 +1,20 @@
+<div class="container mt-4">
 
-<button (click)="CreateNewEntry()" class="btn btn-primary">Nuevo Producto</button>
-<table>
-    <tr>
-      <th><b>Imagen</b></th>
-      <th><b>Nombre</b></th>
-      <th><b>Marca</b></th>
-      <th><b>Descripción</b></th>
-      <th><b>Precio</b></th>
-      <th><b>Descuento</b></th>
-      <th><b>Tipo de Descuento</b></th>
-      <th><b>Precio final</b></th>
-      <th><b>Stock</b></th>
-    </tr>
+  <div class="d-flex justify-content-end mb-3">
+    <button (click)="CreateNewEntry()" class="btn btn-success">
+      ➕ Nuevo Producto
+    </button>
+  </div>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
     @for (prod of products; track $index) {
-      <inventory_item (entryDeletedEvent)="OnChildButtonClick()" style="display: contents;" [product]="prod"></inventory_item>
+      <div class="col">
+        <inventory_item
+          (entryDeletedEvent)="OnChildButtonClick()"
+          [product]="prod">
+        </inventory_item>
+      </div>
     }
-</table>
+  </div>
+
+</div>

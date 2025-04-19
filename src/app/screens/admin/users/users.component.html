@@ -1,17 +1,45 @@
+<div class="container mt-4">
 
-<button (click)="CreateNewEntry()" class="btn btn-primary">Nuevo Producto</button>
-<table>
-    <tr>
-      <th><b>Nombre</b></th>
-      <th><b>Apellido</b></th>
-      <th><b>e-mail</b></th>
-      <th><b>Contraseña</b></th>
-      <th><b>Rol</b></th>
-      <th><b>Pais</b></th>
-      <th><b>Estado / Departamento</b></th>
-      <th><b>Direccion</b></th>
-    </tr>
-    @for (user of users; track $index) {
-      <users_item (entryDeletedEvent)="OnChildButtonClick()" style="display: contents;" [id]="user.id" [name]="user.name" [lname]="user.lname" [email]="user.email" [role]="user.role" [country]="user.country" [state]="user.state" [address]="user.address" [password]="user.password"></users_item>
-    }
-</table>
+  <div class="d-flex justify-content-end mb-3">
+    <button (click)="CreateNewEntry()" class="btn btn-success">
+      ➕ Nuevo Usuario
+    </button>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover table-bordered text-center align-middle small"
+           style="border-collapse: separate; border-spacing: 0px;">
+      <thead style="background-color: #e3f2fd;">
+        <tr>
+          <th><b>Nombre</b></th>
+          <th><b>Apellido</b></th>
+          <th><b>Correo</b></th>
+          <th><b>Contraseña</b></th>
+          <th><b>Rol</b></th>
+          <th><b>País</b></th>
+          <th><b>Estado / Depto.</b></th>
+          <th><b>Dirección</b></th>
+          <th><b>Acciones</b></th>
+        </tr>
+      </thead>
+      <tbody>
+        @for (user of users; track $index) {
+          <users_item
+            (entryDeletedEvent)="OnChildButtonClick()"
+            style="display: contents;"
+            [id]="user.id"
+            [name]="user.name"
+            [lname]="user.lname"
+            [email]="user.email"
+            [role]="user.role"
+            [country]="user.country"
+            [state]="user.state"
+            [address]="user.address"
+            [password]="user.password">
+          </users_item>
+        }
+      </tbody>
+    </table>
+  </div>
+
+</div>

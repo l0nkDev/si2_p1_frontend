@@ -1,14 +1,25 @@
-<ul>
-  <li><b>{{response?.paid_on}}</b></li>
-  <li><b>{{response?.name + " " + response?.lname}}</b></li>
-  <li><b>{{response?.country}}</b></li>
-  <li><b>{{response?.state}}</b></li>
-  <li><b>{{response?.address}}</b></li>
-  <p></p>
-  @for (item of response?.items; track $index) {
-    <li>{{'"' + item.name + '" x' + item.quantity}}</li>
-    <li>{{item.brand}}</li>
-  }
-  <button (click)="OnButtonClick()" class="btn btn-primary">Tomar pedido</button>
-  <br>
-</ul>
+<div class="card shadow-sm p-3" style="border-radius: 12px;">
+  <div class="row">
+    <div class="col-md-6">
+      <p class="mb-1"><strong>🗓️ Fecha:</strong> {{response?.paid_on}}</p>
+      <p class="mb-1"><strong>👤 Cliente:</strong> {{response?.name + " " + response?.lname}}</p>
+      <p class="mb-1"><strong>📍 Dirección:</strong> {{response?.state}}, {{response?.country}}</p>
+      <p class="mb-2"><strong>🏠 Detalle:</strong> {{response?.address}}</p>
+    </div>
+
+    <div class="col-md-6">
+      <p class="fw-bold mb-2">🛒 Productos:</p>
+      <ul class="list-group list-group-flush small">
+        @for (item of response?.items; track $index) {
+          <li class="list-group-item px-0">
+            <span class="fw-semibold">"{{item.name}}"</span> × {{item.quantity}} — <em>{{item.brand}}</em>
+          </li>
+        }
+      </ul>
+
+      <div class="text-end mt-3">
+        <button (click)="OnButtonClick()" class="btn btn-primary btn-sm">🚚 Tomar pedido</button>
+      </div>
+    </div>
+  </div>
+</div>

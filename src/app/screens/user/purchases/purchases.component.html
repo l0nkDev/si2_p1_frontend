@@ -1,5 +1,9 @@
-<div style="display: flex; flex-direction: column;">
-  @for (item of items; track $index) {
-    <purchase [response]="item"></purchase>
-  }
+<div class="container mt-4">
+  <h4 class="text-center text-primary mb-4">🛍️ Mis Compras</h4>
+
+  <div class="d-flex flex-column gap-4">
+    @for (item of items; track $index) {
+      <purchase [response]="item"></purchase>
+    }
+  </div>
 </div>
