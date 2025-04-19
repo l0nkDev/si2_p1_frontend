@@ -1,6 +1,6 @@
 @if (response != null) {
   <ul>
-    <li><b>{{response.paid_on}}</b></li>
+    <li><b>{{date(response.paid_on)}}</b></li>
     @if (response.vip === 'Y') {
       <li><s>${{response.total_paid}}</s><b> Descuento 15% VIP: ${{(response.total_paid*0.85).toFixed(2)}}</b></li>
     } @else {

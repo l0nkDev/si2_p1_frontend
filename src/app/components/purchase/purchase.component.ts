@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { PurchaseItemComponent } from '../purchase_item/purchase_item.component';
 import { Purchase } from '../../interfaces/purchase';
 import { FormsModule } from '@angular/forms';
+import { formatDate } from '@angular/common';
 
 
 @Component({
@@ -38,5 +39,9 @@ export class PurchaseComponent implements OnInit{
     .subscribe(_ => {
       alert('Rating enviado.');
     })
-}
+  }
+    
+  date(str: string) {
+    return formatDate(Date.parse(str), 'dd-MM-yyyy - hh:mm:ss', 'en-US');
+  }
 }

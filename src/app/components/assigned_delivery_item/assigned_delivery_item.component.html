@@ -1,14 +1,16 @@
-<ul>
-  <li><b>{{response?.paid_on}}</b></li>
-  <li><b>{{response?.name + " " + response?.lname}}</b></li>
-  <li><b>{{response?.country}}</b></li>
-  <li><b>{{response?.state}}</b></li>
-  <li><b>{{response?.address}}</b></li>
-  <p></p>
-  @for (item of response?.items; track $index) {
-    <li>{{'"' + item.name + '" x' + item.quantity}}</li>
-    <li>{{item.brand}}</li>
-  }
-  <button (click)="OnButtonClick()" class="btn btn-primary" [disabled]="response?.delivery_status === 'En delivery' ? false : true">{{response?.delivery_status === 'En delivery' ? 'Confirmar Entrega' : 'Entregado' }}</button>
-  <br>
-</ul>
+@if (response != null) {
+  <ul>
+    <li><b>{{date(response.paid_on)}}</b></li>
+    <li><b>{{response.name + " " + response.lname}}</b></li>
+    <li><b>{{response.country}}</b></li>
+    <li><b>{{response.state}}</b></li>
+    <li><b>{{response.address}}</b></li>
+    <p></p>
+    @for (item of response?.items; track $index) {
+      <li>{{'"' + item.name + '" x' + item.quantity}}</li>
+      <li>{{item.brand}}</li>
+    }
+    <button (click)="OnButtonClick()" class="btn btn-primary" [disabled]="response?.delivery_status === 'En delivery' ? false : true">{{response?.delivery_status === 'En delivery' ? 'Confirmar Entrega' : 'Entregado' }}</button>
+    <br>
+  </ul>
+}
