@@ -16,5 +16,6 @@ export class LogoutComponent implements OnInit{
   ngOnInit(): void {
     sessionStorage.clear();
     this._router.navigateByUrl('/')
+    window.location.href = '/'; 
   }
 }

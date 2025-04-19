@@ -1,13 +1,22 @@
-<ul>
-  <li>{{response?.name}}</li>
-  <li>{{response?.brand}}</li>
-  <li>✰{{response?.rating}}</li>
-  <li>
+<div class="card w-100 p-2 h-100" style="background-color: #f8f9fa; border-radius: 10px;">
+  <div class="card-body p-2">
+    <h6 class="card-title text-danger mb-1">{{response?.name}}</h6>
+    <p class="text-warning small mb-1">{{response?.brand}}</p>
+    <p class="text-muted small mb-1">⭐ {{response?.rating}}</p>
+    
     @if (response?.dprice == response?.price) {
-      {{response?.price}} x{{response?.quantity}} = {{response?.fprice}}
+      <p class="text-dark small mb-0">
+        {{response?.price}} × {{response?.quantity}} = 
+        <strong>${{response?.fprice}}</strong>
+      </p>
     } @else {
-      <s>{{response?.price}}</s> {{response?.dprice}} x{{response?.quantity}} = {{response?.fprice}}
+      <p class="text-dark small mb-0">
+        <s>${{response?.price}}</s> 
+        <span class="text-success">
+          {{response?.dprice}} × {{response?.quantity}} = 
+          <strong>${{response?.fprice}}</strong>
+        </span>
+      </p>
     }
-  </li>
-  <p></p>
-</ul>
+  </div>
+</div>

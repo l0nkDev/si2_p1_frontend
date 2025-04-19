@@ -1,20 +1,79 @@
 @if (product != null) {
-  <tr>
-    <td><img src="{{'http://l0nk5erver.duckdns.org:5000/products/img/'+product.id+'.png'}}" alt="" style="height: 64px; width: 64px;">  
-    <input (change)="OnFileChange($event)" type="file" name="file" id="file" accept="image">
-    <button (click)="OnImageButtonClick()" class="btn btn-primary">Subir imagen</button>
-    </td>
-    <td><input [(ngModel)] = "product.name" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-    <td><input [(ngModel)] = "product.brand" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-    <td><input [(ngModel)] = "product.description" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-    <td><input [(ngModel)] = "product.price" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-    <td><input [(ngModel)] = "product.discount" class="form-control" type="number" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-    <td><input [(ngModel)] = "product.discount_type" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-    <td><input value="{{product.discount_type == 'P' ? (product.price*(1-(product.discount * 0.01))).toFixed(2) : (product.price - product.discount).toFixed(2) }}" class="form-control" disabled="true"></td>
-    <td><input [(ngModel)] = "product.stock" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
+  <div class="card p-3 shadow-sm" style="border-radius: 12px; background-color: #f8f9fa;">
+    <div class="row g-3 align-items-center">
 
-    <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
-    <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>
-  </tr>
+      <div class="col-md-3 text-center">
+        <img [src]="'http://l0nk5erver.duckdns.org:5000/products/img/'+product.id+'.png'"
+             alt="{{product.name}}"
+             class="img-thumbnail mb-2"
+             style="height: 80px; width: 80px; object-fit: cover;">
+
+        <input (change)="OnFileChange($event)"
+               type="file"
+               accept="image"
+               class="form-control form-control-sm mb-2" />
+
+        <button (click)="OnImageButtonClick()" class="btn btn-outline-primary btn-sm w-100">
+          Subir imagen
+        </button>
+      </div>
+
+      <div class="col-md-9">
+        <div class="row g-2">
+          <div class="col-md-6">
+            <label class="form-label small mb-0 fw-bold">Nombre</label>
+            <input [(ngModel)]="product.name" class="form-control form-control-sm" [disabled]="isEditable !== ''">
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label small mb-0 fw-bold">Marca</label>
+            <input [(ngModel)]="product.brand" class="form-control form-control-sm" [disabled]="isEditable !== ''">
+          </div>
+
+          <div class="col-md-12">
+            <label class="form-label small mb-0 fw-bold">Descripción</label>
+            <input [(ngModel)]="product.description" class="form-control form-control-sm" [disabled]="isEditable !== ''">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small mb-0 fw-bold">Precio</label>
+            <input [(ngModel)]="product.price" type="number" class="form-control form-control-sm" [disabled]="isEditable !== ''">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small mb-0 fw-bold">Descuento</label>
+            <input [(ngModel)]="product.discount" type="number" class="form-control form-control-sm" [disabled]="isEditable !== ''">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small mb-0 fw-bold">Tipo</label>
+            <input [(ngModel)]="product.discount_type" class="form-control form-control-sm" [disabled]="isEditable !== ''">
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small mb-0 fw-bold">Precio Final</label>
+            <input [value]="product.discount_type === 'P'
+                            ? (product.price * (1 - (product.discount * 0.01))).toFixed(2)
+                            : (product.price - product.discount).toFixed(2)"
+                   class="form-control form-control-sm" disabled>
+          </div>
+
+          <div class="col-md-4">
+            <label class="form-label small mb-0 fw-bold">Stock</label>
+            <input [(ngModel)]="product.stock" type="number" class="form-control form-control-sm" [disabled]="isEditable !== ''">
+          </div>
+
+          <div class="col-md-4 d-flex flex-column gap-1">
+            <button (click)="OnEditButtonClick()" class="btn btn-outline-secondary btn-sm w-100">
+              {{isEditable === '' ? 'Guardar' : 'Editar'}}
+            </button>
+            <button (click)="OnEntryButtonClick()" class="btn btn-outline-danger btn-sm w-100">
+              Eliminar
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
 }
-

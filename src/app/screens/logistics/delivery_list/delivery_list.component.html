@@ -1,5 +1,12 @@
-<div style="display: flex; flex-direction: column;">
-  @for (item of items; track $index) {
-    <delivery_item (deliveryTaken)="OnChildButtonClick()" [response]="item"></delivery_item>
-  }
+<div class="container mt-4">
+  <h4 class="text-primary text-center mb-4">📬 Pedidos Disponibles</h4>
+
+  <div class="d-flex flex-column gap-4">
+    @for (item of items; track $index) {
+      <delivery_item 
+        (deliveryTaken)="OnChildButtonClick()" 
+        [response]="item">
+      </delivery_item>
+    }
+  </div>
 </div>
