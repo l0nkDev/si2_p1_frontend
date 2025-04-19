@@ -1,18 +1,54 @@
 @if (product != null) {
-  <img src="{{'http://l0nk5erver.duckdns.org:5000/products/img/'+product.id+'.png'}}" alt="" style="height: 150px; width: 150px;">
-  <ul>
-    <li><b>{{product.name}}</b></li>
-    <li><a>{{product.brand}}</a></li>
-    <li><a>{{product.description}}</a></li>
-    <li><a>✰{{product.rating}}</a></li>
-    @if (product.discount == 0) {
-      <li><a>${{product.price}}</a></li>
-    } @else {
-      <li><s>${{product.price}}</s><b>{{" $" + (product.discount_type === 'P' ? product.price*(1-(product.discount*0.01)) : product.price-product.discount) }}</b></li>
-    }
-    <button (click)="OnButtonClick()" class="btn btn-primary">Ver mas...</button>
-    <br>
-    <button (click)="OnCartButtonClick()" class="btn btn-primary {{buttonStatus}}">Agregar al carrito</button>
-    <p></p>
-  </ul>
+  <div class="card shadow-sm d-flex flex-column justify-content-between"
+       style="width: 100%; max-width: 260px; min-height: 430px; max-height: 430px; background-color: #f8f9fa; color: #212529; border-radius: 12px;">
+
+    <!-- Imagen del producto -->
+    <img [src]="'http://l0nk5erver.duckdns.org:5000/products/img/' + product.id + '.png'" 
+         alt="{{product.name}}" 
+         class="card-img-top p-3 mx-auto"
+         style="height: 140px; width: auto; object-fit: contain;" />
+
+    <!-- Cuerpo de la tarjeta -->
+    <div class="card-body p-3 d-flex flex-column justify-content-between">
+
+      <!-- Nombre, marca y descripción -->
+      <h6 class="card-title text-danger mb-1"><b>{{product.name}}</b></h6>
+      <p class="text-warning small mb-1">{{product.brand}}</p>
+      <p class="text-dark small mb-2" style="height: 40px; overflow: hidden; text-overflow: ellipsis;">
+        {{product.description}}
+      </p>      
+
+      <!-- Calificación -->
+      <p class="text-primary small mb-2">✰ {{product.rating}}</p>
+
+      <!-- Precio -->
+      @if (product.discount == 0) {
+        <p class="h6 text-dark mb-2">${{product.price}}</p>
+      } @else {
+        <p class="mb-2">
+          <s class="text-danger">${{product.price}}</s>
+          <span class="text-success fw-bold ms-2">
+            {{
+              " $" + (
+                product.discount_type === 'P' 
+                ? product.price * (1 - (product.discount * 0.01)) 
+                : product.price - product.discount
+              )
+            }}
+          </span>
+        </p>
+      }
+
+      <!-- Botones -->
+      <div class="mt-auto">
+        <button (click)="OnButtonClick()" class="btn btn-outline-primary btn-sm w-100 mb-2">
+          Ver más...
+        </button>
+        <button (click)="OnCartButtonClick()" class="btn btn-success btn-sm w-100 {{buttonStatus}}">
+          🛒 Agregar al carrito
+        </button>
+      </div>
+
+    </div>
+  </div>
 }
