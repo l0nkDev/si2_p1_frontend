@@ -1,19 +1,40 @@
 @if (response != null) {
-  <ul>
-    <li><b>{{date(response.paid_on)}}</b></li>
-    @if (response.vip === 'Y') {
-      <li><s>${{response.total_paid}}</s><b> Descuento 15% VIP: ${{(response.total_paid*0.85).toFixed(2)}}</b></li>
-    } @else {
-      <li><b>{{response.total_paid}}</b></li>
-    }
-    <li><b>{{response.payment_method}}</b></li>
-    <li><b>{{response.delivery_status}}</b></li>
-    <li><b>✰{{response.rating}}</b></li>
-    <td><input [(ngModel)] = "rating" class="form-control" type="number" min="1" max="5" step="0.1"></td>
-    <button (click)="OnRateClick()" class="btn btn-primary">Calificar servicio</button>
-    @for (item of response.items; track $index) {
-      <purchase_item [response]="item"></purchase_item>
-    }
-    <p></p>
-  </ul>
+  <div class="card shadow-sm p-3" style="border-radius: 12px;">
+    <div class="row g-3">
+      <div class="col-md-6">
+        <p class="mb-1"><strong>📅 Fecha:</strong> {{date(response.paid_on)}}</p>
+        <p class="mb-1">
+          <strong>💳 Pago: </strong> 
+          @if (response.vip === 'Y') {
+            <s>${{response.total_paid}}</s> 
+            <span class="text-success fw-bold">
+              ${{(response.total_paid*0.85).toFixed(2)}} (15% VIP)
+            </span>
+          } @else {
+            ${{response.total_paid}}
+          }
+        </p>
+        <p class="mb-1"><strong>📦 Estado:</strong> {{response.delivery_status}}</p>
+        <p class="mb-1"><strong>⭐ Calificación:</strong> {{response.rating}}</p>
+      </div>
+      <div class="col-md-6">
+        <p class="mb-1"><strong>Método de pago:</strong> {{response.payment_method}}</p>
+        <label class="form-label mt-2 mb-1"><strong>Califica el servicio:</strong></label>
+        <div class="d-flex gap-2">
+          <input [(ngModel)]="rating" class="form-control form-control-sm w-25" type="number" min="1" max="5" step="0.1">
+          <button (click)="OnRateClick()" class="btn btn-outline-primary btn-sm">Enviar</button>
+        </div>
+      </div>
+    </div>
+
+    <hr class="my-3">
+
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+      @for (item of response.items; track $index) {
+        <div class="col d-flex">
+          <purchase_item [response]="item"></purchase_item>
+        </div>
+      }
+    </div>
+  </div>
 }

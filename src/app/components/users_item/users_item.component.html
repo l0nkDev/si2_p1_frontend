@@ -1,13 +1,27 @@
 <tr>
-  <td><input [(ngModel)] = "name" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "lname" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "email" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "password" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "role" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "country" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "state" class="form-control" maxlength="50" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  <td><input [(ngModel)] = "address" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}"></td>
-  
-  <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
-  <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>
+  <td><input [(ngModel)]="name" class="form-control form-control-sm" 
+             [disabled]="isEditable !== ''" style="min-width: 120px;"></td>
+  <td><input [(ngModel)]="lname" class="form-control form-control-sm"
+             [disabled]="isEditable !== ''" style="min-width: 120px;"></td>
+  <td><input [(ngModel)]="email" class="form-control form-control-sm"
+             [disabled]="isEditable !== ''" style="min-width: 150px;"></td>
+  <td><input [(ngModel)]="password" class="form-control form-control-sm"
+             [disabled]="isEditable !== ''" style="min-width: 120px;"></td>
+  <td><input [(ngModel)]="role" class="form-control form-control-sm"
+             [disabled]="isEditable !== ''" style="min-width: 90px;"></td>
+  <td><input [(ngModel)]="country" class="form-control form-control-sm"
+             [disabled]="isEditable !== ''" style="min-width: 100px;"></td>
+  <td><input [(ngModel)]="state" class="form-control form-control-sm"
+             [disabled]="isEditable !== ''" style="min-width: 100px;"></td>
+  <td><input [(ngModel)]="address" class="form-control form-control-sm"
+             [disabled]="isEditable !== ''" style="min-width: 150px;"></td>
+
+  <td class="d-flex gap-1 justify-content-center">
+    <button (click)="OnEditButtonClick()" class="btn btn-outline-primary btn-sm">
+      {{ isEditable === '' ? '💾' : '✏️' }}
+    </button>
+    <button (click)="OnEntryButtonClick()" class="btn btn-outline-danger btn-sm">
+      🗑️
+    </button>
+  </td>
 </tr>
