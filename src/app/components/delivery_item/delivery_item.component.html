@@ -1,25 +1,27 @@
-<div class="card shadow-sm p-3" style="border-radius: 12px;">
-  <div class="row">
-    <div class="col-md-6">
-      <p class="mb-1"><strong>🗓️ Fecha:</strong> {{response?.paid_on}}</p>
-      <p class="mb-1"><strong>👤 Cliente:</strong> {{response?.name + " " + response?.lname}}</p>
-      <p class="mb-1"><strong>📍 Dirección:</strong> {{response?.state}}, {{response?.country}}</p>
-      <p class="mb-2"><strong>🏠 Detalle:</strong> {{response?.address}}</p>
-    </div>
+@if (response != null) {
+  <div class="card shadow-sm p-3" style="border-radius: 12px;">
+    <div class="row">
+      <div class="col-md-6">
+        <p class="mb-1"><strong>🗓️ Fecha:</strong> {{date(response.paid_on)}}</p>
+        <p class="mb-1"><strong>👤 Cliente:</strong> {{response.name + " " + response.lname}}</p>
+        <p class="mb-1"><strong>📍 Dirección:</strong> {{response.state}}, {{response.country}}</p>
+        <p class="mb-2"><strong>🏠 Detalle:</strong> {{response.address}}</p>
+      </div>
 
-    <div class="col-md-6">
-      <p class="fw-bold mb-2">🛒 Productos:</p>
-      <ul class="list-group list-group-flush small">
-        @for (item of response?.items; track $index) {
-          <li class="list-group-item px-0">
-            <span class="fw-semibold">"{{item.name}}"</span> × {{item.quantity}} — <em>{{item.brand}}</em>
-          </li>
-        }
-      </ul>
+      <div class="col-md-6">
+        <p class="fw-bold mb-2">🛒 Productos:</p>
+        <ul class="list-group list-group-flush small">
+          @for (item of response.items; track $index) {
+            <li class="list-group-item px-0">
+              <span class="fw-semibold">"{{item.name}}"</span> × {{item.quantity}} — <em>{{item.brand}}</em>
+            </li>
+          }
+        </ul>
 
-      <div class="text-end mt-3">
-        <button (click)="OnButtonClick()" class="btn btn-primary btn-sm">🚚 Tomar pedido</button>
+        <div class="text-end mt-3">
+          <button (click)="OnButtonClick()" class="btn btn-primary btn-sm">🚚 Tomar pedido</button>
+        </div>
       </div>
     </div>
   </div>
-</div>
+}

@@ -23,6 +23,10 @@ export interface Product {
   price: number;
 }
 
+export interface Stripe {
+  url: string
+}
+
 @Component({
   selector: 'cart',
   templateUrl: './cart.component.html',
@@ -67,8 +71,8 @@ export class CartComponent implements OnInit{
 
   OnCheckoutClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart/checkout", null, {headers: this.headers})
-    .subscribe(response => {this._router.navigateByUrl('/purchases')})
+    this.http.get<Stripe>("http://l0nk5erver.duckdns.org:5000/stripe/checkout", {headers: this.headers})
+    .subscribe(response => {window.location.href = response.url})
   }
 
   OnChildButtonClick() { console.log("recibido"); this.fetchContent()}

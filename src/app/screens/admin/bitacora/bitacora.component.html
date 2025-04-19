@@ -1,0 +1,7 @@
+<div style="display: flex; flex-direction: column; align-items: center;">
+  <div style="height: 32px;"> </div>
+  @for (prod of logs; track $index) {
+    <bitacora_item style="display: contents;" [bitacora]="prod"></bitacora_item>
+    <div style="height: 32px;"> </div>
+  }
+</div>

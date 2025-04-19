@@ -1,6 +1,7 @@
 import { Component, Input, EventEmitter, Output } from '@angular/core';
 import { Deliveries } from '../../interfaces/deliveries';
 import { HttpClient, HttpHeaders, HttpXhrBackend } from '@angular/common/http';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'delivery_item',
@@ -22,5 +23,9 @@ export class DeliveryItemComponent {
         "id": this.response?.id
       }, {headers: this.headers})
     .subscribe(_ => {this.deliveryTaken.emit(""); console.log("emitido")})
+  }
+
+  date(str: string) {
+    return formatDate(Date.parse(str), 'dd-MM-yyyy - hh:mm:ss', 'en-US');
   }
 }

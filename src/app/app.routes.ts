@@ -12,6 +12,7 @@ import { PurchasesComponent } from './screens/user/purchases/purchases.component
 import { InfoComponent } from './screens/user/info/info.component';
 import { DeliveryListComponent } from './screens/logistics/delivery_list/delivery_list.component';
 import { AssignmentsComponent } from './screens/logistics/assignments/assignments.component';
+import { BitacoraComponent } from './screens/admin/bitacora/bitacora.component';
 
 export const routes: Routes = [
   {
@@ -71,5 +72,9 @@ export const routes: Routes = [
   {
     path: 'assignments',
     component: AssignmentsComponent,
+  },
+  {
+    path: 'logs',
+    component: BitacoraComponent,
   },
 ];

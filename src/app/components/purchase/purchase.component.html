@@ -2,7 +2,7 @@
   <div class="card shadow-sm p-3" style="border-radius: 12px;">
     <div class="row g-3">
       <div class="col-md-6">
-        <p class="mb-1"><strong>📅 Fecha:</strong> {{response.paid_on}}</p>
+        <p class="mb-1"><strong>📅 Fecha:</strong> {{date(response.paid_on)}}</p>
         <p class="mb-1">
           <strong>💳 Pago: </strong> 
           @if (response.vip === 'Y') {
