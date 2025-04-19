@@ -1,14 +1,42 @@
-<ul>
-  <li><b>{{name}}</b></li>
-  <li><a>{{brand}}</a></li>
-  <li><a>{{description}}</a></li>
-  <li><a>✰{{rating}}</a></li>
-  @if (discount == 0) {
-    <li><a>${{price}}</a></li>
-  } @else {
-    <li><s>${{price}}</s><b>{{" $" + (discount_type === 'P' ? price*(1-(discount*0.01)) : price-discount) }}</b></li>
-  }
-  <input [(ngModel)] = "quantity" type="number" min="1" class="form-control" disabled="{{isEditable === '' ? 'false' : 'true'}}">
-  <button (click)="OnEditButtonClick()" class="btn btn-secondary">{{isEditable === '' ? 'Guardar' : 'Editar'}}</button>
-  <button (click)="OnEntryButtonClick()" class="btn btn-danger">Eliminar</button>
-</ul>
+<div class="card shadow-sm mb-3 p-3" style="background-color: #f8f9fa; border-radius: 12px;">
+  <ul class="list-unstyled mb-3">
+    <li class="mb-1"><b class="text-danger">{{name}}</b></li>
+    <li class="mb-1 text-warning">{{brand}}</li>
+    <li class="mb-1 text-dark">{{description}}</li>
+    <li class="mb-1 text-primary">✰ {{rating}}</li>
+
+    @if (discount == 0) {
+      <li class="mb-1 text-dark">${{price}}</li>
+    } @else {
+      <li class="mb-1">
+        <s class="text-danger">${{price}}</s>
+        <b class="text-success ms-2">
+          {{
+            " $" + (
+              discount_type === 'P'
+              ? price * (1 - (discount * 0.01))
+              : price - discount
+            )
+          }}
+        </b>
+      </li>
+    }
+  </ul>
+
+  <!-- Cantidad + Botones -->
+  <div class="d-flex flex-column flex-sm-row gap-2">
+    <input [(ngModel)]="quantity"
+           type="number"
+           min="1"
+           class="form-control"
+           [disabled]="isEditable !== ''" />
+
+    <button (click)="OnEditButtonClick()" class="btn btn-outline-primary">
+      {{isEditable === '' ? 'Guardar' : 'Editar'}}
+    </button>
+
+    <button (click)="OnEntryButtonClick()" class="btn btn-outline-danger">
+      Eliminar
+    </button>
+  </div>
+</div>

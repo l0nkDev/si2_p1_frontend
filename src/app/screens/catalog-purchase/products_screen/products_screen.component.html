@@ -1,26 +1,76 @@
+<div class="container mt-4">
 
-<br><button class="btn btn-primary" routerLink="/cart" routerLinkActive="router-link-active" >Ver carrito</button>
-@if (listing != null) {<ul>
-  <img src="{{'http://l0nk5erver.duckdns.org:5000/products/img/'+listing.id+'.png'}}" alt="" style="height: 150px; width: 150px;">
-  <li><b>{{listing.name}}</b></li>
-  <li><a>{{listing.brand}}</a></li>
-  <li><a>{{listing.description}}</a></li>
-  <li><a>✰{{listing.rating}}</a></li>
-  <td><input [(ngModel)] = "rating" class="form-control" type="number" min="1" max="5" step="0.1"></td>
-  <button (click)="OnRateClick()" class="btn btn-primary">Calificar producto</button>
-  @if (listing.discount == 0) {
-    <li><a>${{listing.price}}</a></li>
-  } @else {
-    <li><s>${{listing.price}}</s><b>{{" $" + (listing.discount_type === 'P' ? listing.price*(1-(listing.discount*0.01)) : listing.price-listing.discount) }}</b></li>
-  }
-  <button (click)="OnCartButtonClick()" class="btn btn-primary {{buttonStatus}}">Agregar al carrito</button>
-  <p></p>
-</ul>
-<div style="display: flex; flex-direction: row;">
-  @for (prod of listing.recommendations; track $index) {
-    {{console.log(prod.name)}}
-    <product [product]="prod"></product>
+  <div class="text-end mb-3">
+    <button class="btn btn-outline-primary" routerLink="/cart" routerLinkActive="router-link-active">
+      🛒 Ver carrito
+    </button>
+  </div>
+
+  @if (listing != null) {
+    <div class="card shadow-lg p-4 mb-4"
+         style="background-color: #ffffff; border-left: 5px solid #0d6efd; border-radius: 14px;">
+
+      <div class="row g-4 align-items-center">
+
+        <div class="col-md-4 text-center">
+          <img [src]="'http://l0nk5erver.duckdns.org:5000/products/img/'+listing.id+'.png'" 
+               alt="{{listing.name}}" 
+               class="img-fluid"
+               style="max-height: 200px; object-fit: contain;" />
+        </div>
+
+        <div class="col-md-8">
+
+          <h4 class="text-primary"><b>{{listing.name}}</b></h4>
+          <p class="text-danger mb-1">{{listing.brand}}</p>
+          <p class="mb-2">{{listing.description}}</p>
+
+          <p class="text-info mb-2">✰ {{listing.rating}}</p>
+
+          <div class="d-flex align-items-center mb-3" style="gap: 1rem;">
+            <input [(ngModel)]="rating"
+                   class="form-control"
+                   type="number"
+                   min="1" max="5" step="0.1"
+                   style="width: 100px;" />
+            <button (click)="OnRateClick()" class="btn btn-outline-success btn-sm">
+              Calificar producto
+            </button>
+          </div>
+
+          @if (listing.discount == 0) {
+            <p class="h5 text-dark mb-3">${{listing.price}}</p>
+          } @else {
+            <p class="mb-3">
+              <s class="text-danger h6">${{listing.price}}</s>
+              <span class="text-success h5 ms-2">
+                {{
+                  " $" + (
+                    listing.discount_type === 'P'
+                    ? listing.price * (1 - (listing.discount * 0.01))
+                    : listing.price - listing.discount
+                  )
+                }}
+              </span>
+            </p>
+          }
+
+          <button (click)="OnCartButtonClick()" class="btn btn-success {{buttonStatus}}">
+            🛒 Agregar al carrito
+          </button>
+
+        </div>
+      </div>
+    </div>
+
+    <h5 class="text-secondary mt-4 mb-3">Recomendaciones similares:</h5>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-4">
+      @for (prod of listing.recommendations; track $index) {
+        {{console.log(prod.name)}}
+        <div class="col d-flex justify-content-center">
+          <product [product]="prod"></product>
+        </div>
+      }
+    </div>
   }
 </div>
-}
-
