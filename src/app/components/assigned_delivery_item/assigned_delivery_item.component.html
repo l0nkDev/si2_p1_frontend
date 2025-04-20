@@ -22,7 +22,7 @@
           <button 
             (click)="OnButtonClick()" 
             class="btn btn-outline-success btn-sm"
-            [disabled]="response?.delivery_status !== 'En delivery'">
+            [disabled]="response.delivery_status !== 'En delivery'">
             {{response.delivery_status === 'En delivery' ? '✅ Confirmar Entrega' : 'Entregado'}}
           </button>
         </div>
