@@ -13,6 +13,7 @@ import { InfoComponent } from './screens/user/info/info.component';
 import { DeliveryListComponent } from './screens/logistics/delivery_list/delivery_list.component';
 import { AssignmentsComponent } from './screens/logistics/assignments/assignments.component';
 import { BitacoraComponent } from './screens/admin/bitacora/bitacora.component';
+import { ReportesComponent } from './screens/admin/reportes/reportes.component';
 
 export const routes: Routes = [
   {
@@ -76,5 +77,9 @@ export const routes: Routes = [
   {
     path: 'logs',
     component: BitacoraComponent,
+  },
+  {
+    path: 'reports',
+    component: ReportesComponent,
   },
 ];

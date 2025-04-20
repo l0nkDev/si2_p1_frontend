@@ -1,0 +1,58 @@
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+  <div class="card p-4 shadow"
+       style="width: 100%; max-width: 400px; min-height: 500px; background-color: #ffffff; border-radius: 12px;">
+
+    <h4 class="text-center text-primary mb-3">Generar reporte</h4>
+
+    <div class="d-flex flex-column gap-1">
+      
+      <label for="base" class="form-label mb-1">Tipo base de reporte</label>
+      <select [(ngModel)]="base" class="form-select" id="base" aria-label="Default select example">
+        <option value="products">Productos</option>
+        <option value="users">Usuarios</option>
+      </select>
+
+      <label for="criteria" class="form-label mb-1">Criterio de ordenamiento</label>
+      <select [(ngModel)]="criteria" class="form-select" id="criteria" aria-label="Default select example">
+        @if (base == "products") {
+          <option value="id">ID</option>
+          <option value="price">Precio</option>
+          <option value="discounted">Descuento</option>
+          <option value="final">Precio final</option>
+          <option value="stock">Stock</option>
+          <option value="units_sold">Ventas</option>
+          <option value="earnings">Ganancias</option>
+        }
+        @if (base == "users") {
+          <option value="id">ID</option>
+          <option value="deliveries_taken">Ordenes tomadas</option>
+          <option value="deliveries_completed">Ordenes completadas</option>
+          <option value="orders_made">Pedidos</option>
+          <option value="products_purchased">Compras</option>
+          <option value="money_spent">Monto gastado</option>
+        }
+      </select>
+      
+      <label for="order" class="form-label mb-1">Orden</label>
+      <select [(ngModel)]="order" class="form-select" id="order" aria-label="Default select example">
+        <option value="asc">Ascendente</option>
+        <option value="desc">Descendente</option>
+      </select>
+      
+      <label for="since" class="form-label mb-1">Datos desde:</label>
+      <input [(ngModel)]="since" id="since" type="date" class="form-control">
+
+      <label for="until" class="form-label mb-1">Datos hasta:</label>
+      <input [(ngModel)]="until" id="until" type="date" class="form-control">
+    </div>
+    <div class="text-center mt-4">
+      <a href="http://l0nk5erver.duckdns.org:5000/reportes/{{base}}/{{criteria}}/{{order}}/{{since}}/{{until}}/pdf">
+        <button class="btn btn-outline-primary btn-sm" style="width: 100px;">PDF</button>
+      </a>
+      <a href="http://l0nk5erver.duckdns.org:5000/reportes/{{base}}/{{criteria}}/{{order}}/{{since}}/{{until}}/excel">
+        <button class="btn btn-outline-primary btn-sm" style="width: 100px;">Excel</button>
+      </a>
+    </div>
+  </div>
+</div>
+

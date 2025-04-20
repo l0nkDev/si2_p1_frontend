@@ -23,6 +23,9 @@ export class RegisterComponent {
   name = '';
   lname = '';
   token = '';
+  country = '';
+  state = '';
+  address = '';
   message = '';
 
   register() {
@@ -30,6 +33,9 @@ export class RegisterComponent {
     var password = this.password;
     var name = this.name;
     var lname = this.lname;
+    var country = this.country;
+    var state = this.state;
+    var address = this.address;
     this.token = "";
 
     this.http.post<Response>(
@@ -38,7 +44,10 @@ export class RegisterComponent {
         "email": email,
         "password": password,
         "name": name,
-        "lname": lname
+        "lname": lname,
+        "country": country,
+        "state": state,
+        "address": address
       }
     ).subscribe(response => {this.message = 'Registro exitoso'
       sessionStorage.clear()

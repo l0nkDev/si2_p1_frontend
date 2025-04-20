@@ -22,6 +22,20 @@ export class InfoComponent implements OnInit{
     .subscribe(_ => { this.user = _ ; console.log(this.user)});
   }
 
-  register() {
+  update() {
+    this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
+    this.http.patch("http://l0nk5erver.duckdns.org:5000/users/self",
+      {
+        "email": this.user?.email,
+        "password": this.user?.password,
+        "name": this.user?.name,
+        "lname": this.user?.lname,
+        "country": this.user?.country,
+        "state": this.user?.state,
+        "address": this.user?.address,
+
+      },
+      {headers: this.headers})
+  .subscribe(_ => { alert("Datos actualizados")});
   }
 }

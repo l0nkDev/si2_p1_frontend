@@ -17,6 +17,15 @@
       <label for="lname" class="form-label mb-1">Apellido</label>
       <input [(ngModel)]="lname" id="lname" maxlength="50" class="form-control" />
 
+      <label for="country" class="form-label mb-1">Pais</label>
+      <input [(ngModel)]="country" id="country" class="form-control" />
+
+      <label for="state" class="form-label mb-1">Estado/departamento</label>
+      <input [(ngModel)]="state" id="state" class="form-control" />
+
+      <label for="address" class="form-label mb-1">Direccion</label>
+      <input [(ngModel)]="address" id="address" class="form-control" />
+
       <button (click)="register()" class="btn btn-primary mt-3 w-100">Registrate</button>
 
       <div class="text-success mt-2 text-center">
