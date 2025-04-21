@@ -23,7 +23,7 @@
              maxlength="50"
              class="form-control" />
 
-      <button (click)="login()" class="btn btn-primary mt-3 w-100">Ingresar</button>
+      <button (click)="login()" class="btn btn-primary mt-3 w-100 {{email.length > 0 && password.length > 0  ? '' : 'disabled' }} ">Ingresar</button>
     </div>
 
     <div class="text-center mt-4">

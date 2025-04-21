@@ -1,4 +1,4 @@
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 80vh;">
+<div class="container d-flex justify-content-center align-items-center flex-column" style="min-height: 80vh;">
   <div class="card p-4 shadow"
        style="width: 100%; max-width: 400px; min-height: 500px; background-color: #ffffff; border-radius: 12px;">
 
@@ -10,9 +10,10 @@
       <select [(ngModel)]="base" class="form-select" id="base" aria-label="Default select example">
         <option value="products">Productos</option>
         <option value="users">Usuarios</option>
+        <option value="logs">Bitácora</option>
       </select>
 
-      <label for="criteria" class="form-label mb-1">Criterio de ordenamiento</label>
+      <label for="criteria" class="form-label mb-1">{{base == 'logs' ? 'Limitar roles' : 'Criterio de ordenamiento'}}</label>
       <select [(ngModel)]="criteria" class="form-select" id="criteria" aria-label="Default select example">
         @if (base == "products") {
           <option value="id">ID</option>
@@ -31,6 +32,12 @@
           <option value="products_purchased">Compras</option>
           <option value="money_spent">Monto gastado</option>
         }
+        @if (base == "logs") {
+          <option value="any">Todos</option>
+          <option value="owner">Dueños</option>
+          <option value="guest">Clientes</option>
+          <option value="delivery">Repartidores</option>
+        }
       </select>
       
       <label for="order" class="form-label mb-1">Orden</label>
@@ -46,13 +53,16 @@
       <input [(ngModel)]="until" id="until" type="date" class="form-control">
     </div>
     <div class="text-center mt-4">
-      <a href="http://l0nk5erver.duckdns.org:5000/reportes/{{base}}/{{criteria}}/{{order}}/{{since}}/{{until}}/pdf">
-        <button class="btn btn-outline-primary btn-sm" style="width: 100px;">PDF</button>
-      </a>
-      <a href="http://l0nk5erver.duckdns.org:5000/reportes/{{base}}/{{criteria}}/{{order}}/{{since}}/{{until}}/excel">
-        <button class="btn btn-outline-primary btn-sm" style="width: 100px;">Excel</button>
-      </a>
+        <button (click)="onPdf()" class="btn btn-outline-primary btn-sm" style="width: 100px;">PDF</button>
+        <button (click)="onExcel()" class="btn btn-outline-primary btn-sm" style="width: 100px;">Excel</button>
     </div>
   </div>
+  <div style="height: 32px;"></div>
+  <h4 class="text-center text-primary mb-3">Reportes previos</h4>
+  @for (item of reportes; track $index) {
+    <div style="height: 32px;"></div>
+    <reporte_item [reporte]="item" ></reporte_item>
+  }
 </div>
+
 

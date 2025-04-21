@@ -1,0 +1,15 @@
+@if (reporte != null) {
+  <div class="card" style="width: 25rem;">
+    <div class="card-body">
+      <a>{{reporte.name}} {{reporte.lname}}<br>{{reporte.since}} - {{reporte.until}}</a><br>
+      <a>{{reporte.base}} - {{reporte.criteria}} - {{reporte.orden}}</a><br>
+      <a href="http://l0nk5erver.duckdns.org:5000/reportes/{{reporte.base}}/{{reporte.criteria}}/{{reporte.orden}}/{{reporte.since}}/{{reporte.until}}/pdf">
+        <button class="btn btn-outline-primary btn-sm" style="width: 100px;">PDF</button>
+      </a>
+      <a href="http://l0nk5erver.duckdns.org:5000/reportes/{{reporte.base}}/{{reporte.criteria}}/{{reporte.orden}}/{{reporte.since}}/{{reporte.until}}/excel">
+        <button class="btn btn-outline-primary btn-sm" style="width: 100px;">Excel</button>
+      </a>
+    </div>
+  </div>
+}
+

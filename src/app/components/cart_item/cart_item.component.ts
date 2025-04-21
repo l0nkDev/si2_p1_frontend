@@ -14,6 +14,7 @@ export class CartItemComponent {
     build: () => new XMLHttpRequest()
   }));
   @Input({transform: numberAttribute}) id: number = 0;
+  @Input({transform: numberAttribute}) productid: number = 0;
   @Input() name: string = '';
   @Input() brand: string = '';
   @Input() description: string = '';

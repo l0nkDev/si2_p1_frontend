@@ -27,7 +27,12 @@ export class ProductComponent implements OnInit{
   }
 
   OnButtonClick() {
-        this._router.navigateByUrl('/product?p='+ this.product?.id)
+        this.redirectTo('/product?p='+ this.product?.id)
+  }
+
+  redirectTo(uri: string) {
+    this._router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this._router.navigateByUrl(uri)});
   }
 
   OnCartButtonClick() {
