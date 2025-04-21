@@ -6,7 +6,7 @@ import { Product } from '../../../interfaces/product';
 
 @Component({
   selector: 'inventory',
-  templateUrl: './Inventory.component.html',
+  templateUrl: './inventory.component.html',
   imports: [InventoryItemComponent],
 })
 
@@ -19,10 +19,10 @@ export class InventoryComponent implements OnInit{
   }));
 
   ngOnInit() {this.fetchContent()}
-  
+
   @HostListener('window:scroll', ['$event'])
     onScroll($event: Event): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {    
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.page++;
       this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products?page=" + this.page)
         .subscribe(_ => {
@@ -32,7 +32,7 @@ export class InventoryComponent implements OnInit{
       )
     }
   }
-  
+
   fetchContent() {
     this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products")
     .subscribe(response => {
