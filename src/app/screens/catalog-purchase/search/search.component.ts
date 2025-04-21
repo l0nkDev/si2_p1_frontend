@@ -30,7 +30,7 @@ export class SearchComponent implements OnInit{
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {    
       this.page++;
       console.log(this.page)
-      this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products?page=" + this.page)
+      this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products/search?q=" + this.query +"&page=" + this.page)
         .subscribe(_ => {
           this.products = this.products.concat(_)
           console.log(this.products)
