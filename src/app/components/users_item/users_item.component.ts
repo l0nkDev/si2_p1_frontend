@@ -29,7 +29,7 @@ export class UsersItemComponent {
 
   OnEntryButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.delete<Response[]>("http://l0nk5erver.duckdns.org:5000/admin/users/remove?id=" + this.id, {headers: this.headers})
+    this.http.delete<Response[]>("http://34.70.148.131:5000/admin/users/remove?id=" + this.id, {headers: this.headers})
     .subscribe(_ => {
       this.entryDeletedEvent.emit("")
       console.log("emitido")
@@ -41,7 +41,7 @@ export class UsersItemComponent {
     if (this.isEditable === 'disabled') this.isEditable = '';
     else {
       this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-      this.http.patch<Response[]>("http://l0nk5erver.duckdns.org:5000/admin/users/add",
+      this.http.patch<Response[]>("http://34.70.148.131:5000/admin/users/add",
         {
           "id": this.id,
           "name": this.name,

@@ -37,7 +37,7 @@ export class ProductComponent implements OnInit{
 
   OnCartButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/users/cart/add",
+    this.http.post("http://34.70.148.131:5000/users/cart/add",
       {
         "id": this.product?.id
       }

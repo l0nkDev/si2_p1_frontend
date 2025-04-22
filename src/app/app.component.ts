@@ -30,7 +30,7 @@ export class AppComponent implements OnInit{
 
   onRouteUpdate() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<User>("http://l0nk5erver.duckdns.org:5000/users/self", {headers: this.headers})
+    this.http.get<User>("http://34.70.148.131:5000/users/self", {headers: this.headers})
     .subscribe(_ => {this.user = _})
     console.log(this.user)
     this.token = sessionStorage.getItem('token');
@@ -43,23 +43,23 @@ export class AppComponent implements OnInit{
       this.loginDestination = 'login';
       this.meEnabled = 'disabled';
     }
-    this.homeStatus = this._router.url === '/' || 
-    this._router.url.startsWith('/product') || 
-    this._router.url.startsWith('/cart') || 
+    this.homeStatus = this._router.url === '/' ||
+    this._router.url.startsWith('/product') ||
+    this._router.url.startsWith('/cart') ||
     this._router.url.startsWith('/search')? 'active' : '';
 
-    this.loginStatus = this._router.url.startsWith('/login') || 
+    this.loginStatus = this._router.url.startsWith('/login') ||
     this._router.url.startsWith('/register') ? 'active' : '';
 
-    this.meStatus = this._router.url.startsWith('/me') || 
+    this.meStatus = this._router.url.startsWith('/me') ||
     this._router.url.startsWith('/purchases') ? 'active' : '';
 
-    this.adminStatus = this._router.url.startsWith('/inventory') || 
-    this._router.url.startsWith('/logs') || 
-    this._router.url.startsWith('/reports') || 
+    this.adminStatus = this._router.url.startsWith('/inventory') ||
+    this._router.url.startsWith('/logs') ||
+    this._router.url.startsWith('/reports') ||
     this._router.url.startsWith('/users') ? 'active' : '';
 
-    this.logisticsStatus = this._router.url.startsWith('/deliveries') || 
+    this.logisticsStatus = this._router.url.startsWith('/deliveries') ||
     this._router.url.startsWith('/assignments') ? 'active' : '';
   }
 

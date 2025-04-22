@@ -39,7 +39,7 @@ export class RegisterComponent {
     this.token = "";
 
     this.http.post<Response>(
-      "http://l0nk5erver.duckdns.org:5000/auth/register",
+      "http://34.70.148.131:5000/auth/register",
       {
         "email": email,
         "password": password,

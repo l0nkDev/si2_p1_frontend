@@ -4,9 +4,9 @@
       <div class="col-md-6">
         <p class="mb-1"><strong>📅 Fecha:</strong> {{date(response.paid_on)}}</p>
         <p class="mb-1">
-          <strong>💳 Pago: </strong> 
+          <strong>💳 Pago: </strong>
           @if (response.vip === 'Y') {
-            <s>${{response.total_paid}}</s> 
+            <s>${{response.total_paid}}</s>
             <span class="text-success fw-bold">
               ${{(response.total_paid*0.85).toFixed(2)}} (15% VIP)
             </span>
@@ -37,6 +37,6 @@
       }
     </div>
     <div style="height: 12px;"></div>
-    <a href="{{ 'http://l0nk5erver.duckdns.org:5000/facturas/' + response.id }}"><button class="btn btn-outline-primary btn-sm" style="width: 100px;">Ver factura</button></a>
+    <a href="{{ 'http://34.70.148.131:5000/facturas/' + response.id }}"><button class="btn btn-outline-primary btn-sm" style="width: 100px;">Ver factura</button></a>
   </div>
 }

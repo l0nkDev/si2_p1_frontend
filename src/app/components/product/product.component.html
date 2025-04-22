@@ -3,8 +3,8 @@
        style="width: 100%; max-width: 260px; min-height: 430px; max-height: 430px; background-color: #f8f9fa; color: #212529; border-radius: 12px;">
 
     <!-- Imagen del producto -->
-    <img [src]="'http://l0nk5erver.duckdns.org:5000/products/img/' + product.id + '.png'" 
-         alt="{{product.name}}" 
+    <img [src]="'http://34.70.148.131:5000/products/img/' + product.id + '.png'"
+         alt="{{product.name}}"
          class="card-img-top p-3 mx-auto"
          style="height: 140px; width: auto; object-fit: contain;" />
 
@@ -16,7 +16,7 @@
       <p class="text-warning small mb-1">{{product.brand}}</p>
       <p class="text-dark small mb-2" style="height: 40px; overflow: hidden; text-overflow: ellipsis;">
         {{product.description}}
-      </p>      
+      </p>
 
       <!-- Calificación -->
       <p class="text-primary small mb-2">✰ {{product.rating}}</p>
@@ -30,8 +30,8 @@
           <span class="text-success fw-bold ms-2">
             {{
               " $" + (
-                product.discount_type === 'P' 
-                ? product.price * (1 - (product.discount * 0.01)) 
+                product.discount_type === 'P'
+                ? product.price * (1 - (product.discount * 0.01))
                 : product.price - product.discount
               )
             }}

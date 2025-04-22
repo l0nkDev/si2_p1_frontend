@@ -35,9 +35,9 @@ export class CatalogComponent implements OnInit{
 
   @HostListener('window:scroll', ['$event'])
     onScroll($event: Event): void {
-    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {    
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.page++;
-      this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products?page=" + this.page)
+      this.http.get<Product[]>("http://34.70.148.131:5000/products?page=" + this.page)
         .subscribe(_ => {
           this.products = this.products.concat(_)
           console.log(this.products)
@@ -51,7 +51,7 @@ export class CatalogComponent implements OnInit{
     this.token = sessionStorage.getItem('token');
     if (this.token) { this.buttonStatus = ''}
     else {this.buttonStatus = 'disabled'}
-    this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products")
+    this.http.get<Product[]>("http://34.70.148.131:5000/products")
     .subscribe(_ => {
       this.products = _;
       console.log(this.products)

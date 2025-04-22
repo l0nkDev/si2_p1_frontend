@@ -18,13 +18,13 @@ export class InfoComponent implements OnInit{
 
   ngOnInit() {
       this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-      this.http.get<User>("http://l0nk5erver.duckdns.org:5000/users/self", {headers: this.headers})
+      this.http.get<User>("http://34.70.148.131:5000/users/self", {headers: this.headers})
     .subscribe(_ => { this.user = _ ; console.log(this.user)});
   }
 
   update() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.patch("http://l0nk5erver.duckdns.org:5000/users/self",
+    this.http.patch("http://34.70.148.131:5000/users/self",
       {
         "email": this.user?.email,
         "password": this.user?.password,

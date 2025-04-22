@@ -27,13 +27,13 @@ export class LoginComponent {
     var email = this.email;
     var password = this.password;
     this.http.post<Response>(
-      "http://l0nk5erver.duckdns.org:5000/auth/login/email",
+      "http://34.70.148.131:5000/auth/login/email",
       {
         "email": email,
         "password": password
       }
     ).subscribe(response => {
-      sessionStorage.setItem('token', response.access_token); 
+      sessionStorage.setItem('token', response.access_token);
       console.log('router reached');
       this._router.navigateByUrl('/');
     }

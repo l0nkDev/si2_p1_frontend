@@ -25,7 +25,7 @@ export class PurchasesComponent implements OnInit{
 
   fetchContent() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<Purchase[]>("http://l0nk5erver.duckdns.org:5000/users/purchases", {headers: this.headers})
+    this.http.get<Purchase[]>("http://34.70.148.131:5000/users/purchases", {headers: this.headers})
     .subscribe(response => {
       this.items = response;
       console.log(response)

@@ -23,7 +23,7 @@ export class BitacoraComponent implements OnInit{
 
   fetchContent() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<Bitacora[]>("http://l0nk5erver.duckdns.org:5000/admin/bitacora"
+    this.http.get<Bitacora[]>("http://34.70.148.131:5000/admin/bitacora"
       , {headers: this.headers})
     .subscribe(_ => {
       this.logs = _;
@@ -33,9 +33,9 @@ export class BitacoraComponent implements OnInit{
   @HostListener('window:scroll', ['$event'])
   onScroll($event: Event): void {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {    
+  if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
     this.page++;
-    this.http.get<Bitacora[]>("http://l0nk5erver.duckdns.org:5000/admin/bitacora?page=" + this.page
+    this.http.get<Bitacora[]>("http://34.70.148.131:5000/admin/bitacora?page=" + this.page
       , {headers: this.headers})
       .subscribe(_ => {
         this.logs = this.logs.concat(_)

@@ -32,7 +32,7 @@ export class UsersComponent implements OnInit{
 
   fetchContent() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/admin/users", {headers: this.headers})
+    this.http.get<Response[]>("http://34.70.148.131:5000/admin/users", {headers: this.headers})
     .subscribe(response => {
       this.users = response;
     })
@@ -42,7 +42,7 @@ export class UsersComponent implements OnInit{
 
   CreateNewEntry() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/admin/users/add",
+    this.http.post<Response[]>("http://34.70.148.131:5000/admin/users/add",
       {
         "name": "Nuevo",
         "lname": "usuario",

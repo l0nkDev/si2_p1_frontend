@@ -27,13 +27,13 @@ export class ReportesComponent implements OnInit{
   ngOnInit() {this.fetchContent()}
 
   fetchContent() {
-    this.http.get<Reporte[]>("http://l0nk5erver.duckdns.org:5000/reportes")
+    this.http.get<Reporte[]>("http://34.70.148.131:5000/reportes")
     .subscribe(response => {this.reportes = response})
   }
 
   onPdf() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/reportes/create",
+    this.http.post("http://34.70.148.131:5000/reportes/create",
       {
         "base": this.base,
         "criteria": this.criteria,
@@ -42,12 +42,12 @@ export class ReportesComponent implements OnInit{
         "orden": this.order
       }
       , {headers: this.headers})
-    .subscribe(response => {window.location.href = "http://l0nk5erver.duckdns.org:5000/reportes/" + this.base + "/" + this.criteria + "/" + this.order + "/" + this.since + "/" + this.until + "/pdf" })
+    .subscribe(response => {window.location.href = "http://34.70.148.131:5000/reportes/" + this.base + "/" + this.criteria + "/" + this.order + "/" + this.since + "/" + this.until + "/pdf" })
   }
 
   onExcel() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/reportes/create",
+    this.http.post("http://34.70.148.131:5000/reportes/create",
       {
         "base": this.base,
         "criteria": this.criteria,
@@ -56,7 +56,7 @@ export class ReportesComponent implements OnInit{
         "orden": this.order
       }
       , {headers: this.headers})
-    .subscribe(response => {window.location.href = "http://l0nk5erver.duckdns.org:5000/reportes/" + this.base + "/" + this.criteria + "/" + this.order + "/" + this.since + "/" + this.until + "/excel" })
+    .subscribe(response => {window.location.href = "http://34.70.148.131:5000/reportes/" + this.base + "/" + this.criteria + "/" + this.order + "/" + this.since + "/" + this.until + "/excel" })
   }
 
 }

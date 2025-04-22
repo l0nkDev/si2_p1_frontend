@@ -23,7 +23,7 @@ export class InventoryItemComponent {
 
   OnEntryButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.delete<Response[]>("http://l0nk5erver.duckdns.org:5000/admin/product/remove?id=" + this.product?.id, {headers: this.headers})
+    this.http.delete<Response[]>("http://34.70.148.131:5000/admin/product/remove?id=" + this.product?.id, {headers: this.headers})
     .subscribe(_ => {
       this.entryDeletedEvent.emit("")
       console.log("emitido")
@@ -34,7 +34,7 @@ export class InventoryItemComponent {
     if (this.isEditable === 'disabled') this.isEditable = '';
     else {
       this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-      this.http.patch("http://l0nk5erver.duckdns.org:5000/admin/product/add",
+      this.http.patch("http://34.70.148.131:5000/admin/product/add",
         {
           "id": this.product?.id,
           "name": this.product?.name,
@@ -57,16 +57,16 @@ export class InventoryItemComponent {
   OnFileChange(event: any) {
     this.files = event.srcElement.files
     console.log("archivo")
-    console.log(this.files[0]) 
+    console.log(this.files[0])
   }
-  
-  OnImageButtonClick() { 
+
+  OnImageButtonClick() {
     console.log("boton")
     let formData = new FormData();
     formData.append("file", this.files[0], this.files[0].name);
     console.log(formData)
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/products/img?id="+this.product?.id, formData, {headers: this.headers}).subscribe(
+    this.http.post("http://34.70.148.131:5000/products/img?id="+this.product?.id, formData, {headers: this.headers}).subscribe(
       (r)=>{
         this.entryDeletedEvent.emit("")
         alert("imagen subida")

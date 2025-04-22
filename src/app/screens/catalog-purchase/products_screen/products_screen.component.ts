@@ -31,7 +31,7 @@ export class ProductsScreenComponent implements OnInit{
     if (this.token) { this.buttonStatus = ''}
     else {this.buttonStatus = 'disabled'}
 
-    this.http.get<ProductListing>("http://l0nk5erver.duckdns.org:5000/products/get?id=" + this.id)
+    this.http.get<ProductListing>("http://34.70.148.131:5000/products/get?id=" + this.id)
     .subscribe(_ => {
       this.listing = _
       console.log(this.listing)
@@ -40,7 +40,7 @@ export class ProductsScreenComponent implements OnInit{
 
   OnCartButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/users/cart/add",
+    this.http.post("http://34.70.148.131:5000/users/cart/add",
       {
         "id": this.id
       }
@@ -52,7 +52,7 @@ export class ProductsScreenComponent implements OnInit{
 
   OnRateClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/users/products/rate",
+    this.http.post("http://34.70.148.131:5000/users/products/rate",
       {
         "id": this.listing?.id,
         'rating': this.rating

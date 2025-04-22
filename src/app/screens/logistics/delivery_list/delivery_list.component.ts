@@ -25,7 +25,7 @@ export class DeliveryListComponent implements OnInit{
 
   fetchContent() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<Deliveries[]>("http://l0nk5erver.duckdns.org:5000/admin/delivery", {headers: this.headers})
+    this.http.get<Deliveries[]>("http://34.70.148.131:5000/admin/delivery", {headers: this.headers})
     .subscribe(response => {
       this.items = response;
     })

@@ -30,7 +30,7 @@ export class PurchaseComponent implements OnInit{
 
   OnRateClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/users/purchases/rate",
+    this.http.post("http://34.70.148.131:5000/users/purchases/rate",
       {
         "id": this.response?.id,
         'rating': this.rating
@@ -40,7 +40,7 @@ export class PurchaseComponent implements OnInit{
       alert('Rating enviado.');
     })
   }
-    
+
   date(str: string) {
     return formatDate(Date.parse(str), 'dd-MM-yyyy - hh:mm:ss', 'en-US');
   }

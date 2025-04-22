@@ -20,13 +20,13 @@ export class LogoutComponent implements OnInit{
   constructor(private _router: Router) { }
   ngOnInit(): void {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post("http://l0nk5erver.duckdns.org:5000/auth/logout",{}, {headers: this.headers})
+    this.http.post("http://34.70.148.131:5000/auth/logout",{}, {headers: this.headers})
     .subscribe((_: any) => {
       sessionStorage.clear();
       this._router.navigateByUrl('/');
-      window.location.href = '/'; 
+      window.location.href = '/';
      })
-  } 
+  }
 
 
 }

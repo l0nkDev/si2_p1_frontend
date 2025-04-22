@@ -24,7 +24,7 @@ export class InventoryComponent implements OnInit{
     onScroll($event: Event): void {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
       this.page++;
-      this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products?page=" + this.page)
+      this.http.get<Product[]>("http://34.70.148.131:5000/products?page=" + this.page)
         .subscribe(_ => {
           this.products = this.products.concat(_)
           console.log(this.products)
@@ -34,7 +34,7 @@ export class InventoryComponent implements OnInit{
   }
 
   fetchContent() {
-    this.http.get<Product[]>("http://l0nk5erver.duckdns.org:5000/products")
+    this.http.get<Product[]>("http://34.70.148.131:5000/products")
     .subscribe(response => {
       this.products = response;
     })
@@ -44,7 +44,7 @@ export class InventoryComponent implements OnInit{
 
   CreateNewEntry() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.post<Response[]>("http://l0nk5erver.duckdns.org:5000/admin/product/add",
+    this.http.post<Response[]>("http://34.70.148.131:5000/admin/product/add",
       {
         "name": "Nuevo producto",
         "brand": "_",

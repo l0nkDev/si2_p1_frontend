@@ -18,7 +18,7 @@ export class DeliveryItemComponent {
 
   OnButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.patch("http://l0nk5erver.duckdns.org:5000/admin/delivery",
+    this.http.patch("http://34.70.148.131:5000/admin/delivery",
       {
         "id": this.response?.id
       }, {headers: this.headers})
