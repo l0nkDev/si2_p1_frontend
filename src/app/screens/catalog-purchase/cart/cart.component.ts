@@ -51,8 +51,8 @@ export class CartComponent implements OnInit{
 
   fetchContent() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<User>("http://l0nk5erver.duckdns.org:5000/users/self", {headers: this.headers}).subscribe(_ => {this.vip = _.vip;})
-    this.http.get<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart", {headers: this.headers})
+    this.http.get<User>("http://34.70.148.131:5000/users/self", {headers: this.headers}).subscribe(_ => {this.vip = _.vip;})
+    this.http.get<Response[]>("http://34.70.148.131:5000/users/cart", {headers: this.headers})
     .subscribe(response => {
       this.entries = response;
       console.log(response)
@@ -66,13 +66,13 @@ export class CartComponent implements OnInit{
 
   OnButtonClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.delete<Response[]>("http://l0nk5erver.duckdns.org:5000/users/cart", {headers: this.headers})
+    this.http.delete<Response[]>("http://34.70.148.131:5000/users/cart", {headers: this.headers})
     .subscribe(response => {this.fetchContent()})
   }
 
   OnCheckoutClick() {
     this.headers = this.headers.set('Authorization', 'Bearer ' + sessionStorage.getItem('token'));
-    this.http.get<Stripe>("http://l0nk5erver.duckdns.org:5000/stripe/checkout", {headers: this.headers})
+    this.http.get<Stripe>("http://34.70.148.131:5000/stripe/checkout", {headers: this.headers})
     .subscribe(response => {window.location.href = response.url})
   }
 
